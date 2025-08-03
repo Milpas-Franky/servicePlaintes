@@ -43,7 +43,7 @@ class UserFixtures extends Fixture
             $user->setRoles([$record['roles']]);   
             $user->setCommune($record['commune']);*/
 
-        $users = [
+        /*$users = [
             [
                 'nom'=>'Luzayangamo',
                 'postnom'=>'Mampuya',
@@ -90,9 +90,9 @@ class UserFixtures extends Fixture
             //Hasher le mot de passe (sur base de la config security.yaml pour la classe $user)
             $hashedPassword = $this->passwordHasher->hashPassword($user, $record['password']);
               
-            $user->setPassword($hashedPassword);
+            $user->setPassword($hashedPassword);*/
 
-        /*$admin = (new User())
+        $admin = (new User())
             ->setNom('Luzayangamo')
             ->setPostnom('Mampuya')
             ->setPrenom('Nourdine')
@@ -121,11 +121,11 @@ class UserFixtures extends Fixture
         
             $manager->persist($admin);
             $manager->persist($agent);
-            $manager->persist($abonne);*/
+            $manager->persist($abonne);
             
             $manager->persist($user);
-        }
 
             $manager->flush();
-        }
     }
+}
+        
