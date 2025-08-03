@@ -6,11 +6,13 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: "users")]
 
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -139,6 +141,15 @@ class User
         return $this;
     }
 
+    
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary sensitive data, clear it here
+    }
+
     public function getTelephone(): ?string
     {
         return $this->telephone;
@@ -151,16 +162,34 @@ class User
         return $this;
     }
 
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
+    }
+
+     /**
+     * @see UserInterface
+     *
+     * @return list<string>
+     */
     public function getRoles(): array
     { 
-          $roles = $this->roles;
+        //$roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        //$roles[] = 'ROLE_USER';
+
+        $roles = $this->roles;
+        if (!in_array('ROLE_ABONNE', $roles)) {
+            $roles[] = 'ROLE_ABONNE';
+        }
 
         return array_unique($roles);
         //return $this->roles;
     }
 
+    /**
+     * @param list<string> $roles
+     */
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
@@ -179,6 +208,8 @@ class User
 
         return $this;
     }
+
+    
 
     /**
      * @return Collection<int, Plainte>
