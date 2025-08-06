@@ -141,7 +141,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    
+
     /**
      * @see UserInterface
      */
@@ -167,13 +167,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-     /**
+    /**
      * @see UserInterface
      *
      * @return list<string>
      */
     public function getRoles(): array
-    { 
+    {
         //$roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         //$roles[] = 'ROLE_USER';
@@ -209,7 +209,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    
+
 
     /**
      * @return Collection<int, Plainte>
@@ -329,5 +329,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return "{{$this->nom} . ' ' . {$this->prenom} . ' (' . {$this->email} . ')'}";
     }
 }

@@ -11,9 +11,13 @@ class RoleFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        $roles = ['ROLE_ADMIN', 'ROLE_AGENT', 'ROLE_ABONNE'];
 
+        foreach ($roles as $roleName) {
+            $role = new Role();
+            $role->setNom($roleName);
+            $manager->persist($role);
+        }
         $manager->flush();
     }
 }

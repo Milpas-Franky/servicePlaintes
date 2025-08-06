@@ -29,6 +29,8 @@ class Contact
     private ?\DateTime $date = null;
 
     #[ORM\ManyToOne(inversedBy: 'contact')]
+    #[ORM\JoinColumn(nullable: false)]
+
     private ?User $user = null;
 
     public function getId(): ?int
@@ -65,7 +67,7 @@ class Contact
         return $this->message;
     }
 
-    public function setMessage(string $message): static
+    public function setMessage(string $message): self
     {
         $this->message = $message;
 
@@ -77,7 +79,7 @@ class Contact
         return $this->date;
     }
 
-    public function setDate(\DateTime $date): static
+    public function setDate(\DateTime $date): self
     {
         $this->date = $date;
 

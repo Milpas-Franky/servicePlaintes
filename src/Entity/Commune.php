@@ -24,6 +24,9 @@ class Commune
     #[ORM\Column(length: 60)]
     private ?string $ville = null;
 
+    #[ORM\Column(length: 120)]
+    private ?string $commune = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,6 +64,18 @@ class Commune
     public function setVille(string $ville): static
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getCommune(): ?string
+    {
+        return $this->commune;
+    }
+
+    public function setCommune(string $commune): static
+    {
+        $this->commune = $commune;
 
         return $this;
     }

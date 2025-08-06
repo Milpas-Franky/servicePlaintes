@@ -17,8 +17,8 @@ class Role
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private array $nom = [];
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $nom;
 
     /**
      * @var Collection<int, User>
@@ -36,12 +36,12 @@ class Role
         return $this->id;
     }
 
-    public function getNom(): array
+    public function getNom(): ?string
     {
         return $this->nom;
     }
 
-    public function setNom(array $nom): static
+    public function setNom(string $nom): self
     {
         $this->nom = $nom;
 

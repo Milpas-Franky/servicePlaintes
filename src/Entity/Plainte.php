@@ -27,7 +27,7 @@ class Plainte
     #[ORM\Column]
     private ?\DateTime $dateCreation = null;
 
-    #[ORM\ManyToOne(inversedBy: 'plainte')]
+    #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
@@ -39,7 +39,7 @@ class Plainte
     #[ORM\JoinColumn(nullable: false)]
     private ?TypePlainte $TypePlainte = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Commune::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Commune $commune = null;
 
