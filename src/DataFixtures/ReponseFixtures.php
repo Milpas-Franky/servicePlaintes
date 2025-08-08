@@ -16,7 +16,7 @@ class ReponseFixtures extends Fixture implements DependentFixtureInterface
         $plainte = $this->getReference('plainte_default');
 
         $reponse = new Reponse();
-        $reponse->setContenu("Ceci est une réponse automatique.");
+        $reponse->setContenu("Nous avons bein reçu votre plainte. Nous vous tenons au courant le plus tôt possible.");
         $reponse->setDate(new \DateTime());
         $reponse->setUser($user);
         $reponse->setPlainte($plainte);

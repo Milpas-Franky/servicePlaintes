@@ -18,7 +18,7 @@ class Plainte
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 160)]
+    #[ORM\Column(type: Types::STRING, length: 160)]
     private ?string $objet = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -37,7 +37,7 @@ class Plainte
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?TypePlainte $TypePlainte = null;
+    private ?TypePlainte $typePlainte = null;
 
     #[ORM\ManyToOne(targetEntity: Commune::class)]
     #[ORM\JoinColumn(nullable: false)]
@@ -128,12 +128,12 @@ class Plainte
 
     public function getTypePlainte(): ?TypePlainte
     {
-        return $this->TypePlainte;
+        return $this->typePlainte;
     }
 
-    public function setTypePlainte(?TypePlainte $TypePlainte): static
+    public function setTypePlainte(?TypePlainte $typePlainte): static
     {
-        $this->TypePlainte = $TypePlainte;
+        $this->typePlainte = $typePlainte;
 
         return $this;
     }

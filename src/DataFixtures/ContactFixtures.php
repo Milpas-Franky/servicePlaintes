@@ -16,7 +16,7 @@ class ContactFixtures extends Fixture implements DependentFixtureInterface
 
         $contact = new Contact();
         $contact->setEmail('contact@regideso.com');
-        $contact->setTelephone('+243899000000');
+        $contact->setTelephone('+243899345230');
         $contact->setMessage('Bonjour, je souhaite signaler un problème de pression d’eau.');
         $contact->setDate(new \DateTime());
         $contact->setUser($user);

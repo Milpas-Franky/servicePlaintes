@@ -11,12 +11,12 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
-    private UserPasswordHasherInterface $hasher;
+    //private UserPasswordHasherInterface $passwordHasher;
 
-    public function __construct(UserPasswordHasherInterface $hasher)
-    {
-        $this->hasher = $hasher;
-    }
+    public function __construct(private UserPasswordHasherInterface $passwordHasher) {}
+    /*{
+        $this->passwordHasher = $passwordHasher;
+    }*/
 
     public function load(ObjectManager $manager): void
     {
@@ -33,20 +33,24 @@ class UserFixtures extends Fixture
         $abonneRole->setNom(('ROLE_ABONNE'));
         $manager->persist($abonneRole);
 
+        $userRole = new Role();
+        $userRole->setNom('ROLE_USER');
+        $manager->persist($userRole);
+
 
         // Création de l'utilisateur Admin
         $admin = new User();
         $admin->setNom('Luzayangamo')
             ->setPostnom('Mampuya')
             ->setPrenom('Nourdine')
-            ->setEmail('admin@eau.com')
+            ->setEmail('admin@regideso.com')
             ->setTelephone('+243 852 675 684')
-            ->setPassword($this->hasher->hashPassword($admin, 'admin123'))
+            ->setPassword($this->passwordHasher->hashPassword($admin, 'NMampuya1995_@Choubebe'))
             ->setRoles(['ROLE_ADMIN'])
             ->setRole($adminRole);
-
         $manager->persist($admin);
-        $this->addReference('admin_user', $admin);
+        $manager->flush();
+        //dd($admin->getPassword());
 
 
         // Création d'un agent
@@ -54,12 +58,11 @@ class UserFixtures extends Fixture
         $agent->setNom('Luzayangamo')
             ->setPostnom('Anna')
             ->setPrenom('Aminata')
-            ->setEmail('agent@eau.com')
+            ->setEmail('agent@regideso.com')
             ->setTelephone('+243 816 015 211')
-            ->setPassword($this->hasher->hashPassword($agent, 'agent123'))
+            ->setPassword($this->passwordHasher->hashPassword($agent, 'Anna1991_@Llz'))
             ->setRoles(['ROLE_AGENT'])
             ->setRole($agentRole);
-
         $manager->persist($agent);
         $this->addReference('agent_user', $agent);
 
@@ -69,12 +72,11 @@ class UserFixtures extends Fixture
         $abonne->setNom('Kongolo')
             ->setPostnom('Mbumba')
             ->setPrenom('Frank')
-            ->setEmail('abonne@eau.com')
-            ->setTelephone('+243 816 015 211')
-            ->setPassword($this->hasher->hashPassword($abonne, 'abonne123'))
+            ->setEmail('abonne@regideso.com')
+            ->setTelephone('+243 816 015 212')
+            ->setPassword($this->passwordHasher->hashPassword($abonne, 'Kongo1976_@Cct'))
             ->setRoles(['ROLE_ABONNE'])
             ->setRole($abonneRole);
-
         $manager->persist($abonne);
         $this->addReference('abonne_user', $abonne);
 
@@ -84,11 +86,14 @@ class UserFixtures extends Fixture
         $user->setNom('User')
             ->setPostnom('Démo')
             ->setPrenom('Fixture')
-            ->setEmail('user@eau.com')
+            ->setEmail('user@regideso.com')
             ->setTelephone('+243000000000')
-            ->setPassword($this->hasher->hashPassword($user, 'user123'))
-            ->setRoles(['ROLE_ABONNE'])
-            ->setRole($abonneRole);
+            ->setPassword($this->passwordHasher->hashPassword($user, 'User2025_@Demo'))
+            ->setRoles(['ROLE_USER'])
+            ->setRole($userRole);
+
+        $hashedPassword = $this->passwordHasher->hashPassword($user, 'User2025_@Demo');
+        $user->setPassword($hashedPassword);
 
         $manager->persist($user);
         $this->addReference('user_default', $user);
