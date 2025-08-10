@@ -6,10 +6,13 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity("email")]
 #[ORM\Table(name: "users")]
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -19,25 +22,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 60)]
+    
+    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[Assert\Length(min:2, max: 180)]
+    #[Assert\Email()]
+     
     private ?string $email = null;
 
-    #[ORM\Column(length: 60)]
+    #[ORM\Column(type: 'string', length: 60)]
+    #[Assert\NotNull]
+    #[Assert\Length(min: 2, max: 60)]
+    
     private ?string $nom = null;
-
-    #[ORM\Column(length: 60)]
+    #[ORM\Column(type: 'string', length: 60)]
+    #[Assert\NotNull]
+    #[Assert\Length(min: 2, max: 60)]
     private ?string $postnom = null;
 
-    #[ORM\Column(length: 60)]
+    
+    #[ORM\Column(type: 'string', length: 60)]
+    #[Assert\NotNull]
+    #[Assert\Length(min: 2, max: 60)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255)]
+    
+    //@var string The hashed password
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank()]
     private ?string $password = null;
 
     #[ORM\Column(length: 16)]
     private ?string $telephone = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'json')]
+    #[Assert\NotNull()]
     private array $roles = [];
 
     #[ORM\ManyToOne(inversedBy: 'users')]

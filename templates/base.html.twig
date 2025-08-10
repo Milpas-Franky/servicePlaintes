@@ -2,7 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="noindex, nofollow">
+        <title>Service de Gestion des Pliantes{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
         {% endblock %}
@@ -11,7 +13,177 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
+
     <body>
+        <header class="p-3 bg-dark text-white">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    {#<img src="images/logo.png" alt="" href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"></a>#}
+                </div>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mx-2 justify-content-center mb-md-0 mx-auto">
+                    <li><a href="#" class="nav-link px-4 text-secondary">Accueil</a></li>
+                    <li><a href="#" class="nav-link px-4 text-white">A propos</a></li>
+                    <li><a href="#" class="nav-link px-4 text-white">Services</a></li>
+                    <li><a href="#" class="nav-link px-4 text-white">Déposer une plainte </a></li>
+                    <li><a href="#" class="nav-link px-4 text-white">Suivre une plainte</a></li>
+                    <li><a href="#" class="nav-link px-4 text-white">Notre équipe</a></li>
+                    <li><a href="#" class="nav-link px-4 text-white">Contactez-nous !</a></li>
+                </ul>
+
+                {% if app.user %}
+                <div class="text-end">
+                    <a class="btn btn-primary">{{ app.user.Nom }}</a>
+                    <a href="{{ path('app_security_logout') }}" class="btn btn-outline-light me-2">Déconnexion</a>
+                </div>
+                {%  else %}
+
+                <div class="text-end">
+                    <a href="{{ path('app_security_login') }}" class="btn btn-outline-light me-2">Connexion</a>
+                    <a href="{{ path('app_security_registration') }}" class="btn btn-primary">Inscription</a>
+                </div>
+                {%  endif %}
+            </div>
+        </header>
+
         {% block body %}{% endblock %}
+            {#<main class="main"><!--Hero section!-->
+            <section id="hero" class="hero section dark-background">
+                <img src="assets/img/hero-bg.jpg" alt data-aos="fade-in" class="aos-init aos-animate">
+                    <div class="container text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <h2>Bienvenue sur notre site web</h2>
+                                <p>Nous sommes un service de la régie des eaux qui traitent vos plaintes et vous apportent une solution adaptée à votre situation</p>
+                                <a href="#Déposer une plainte" class="btn-déposer-une-plainte">Déposer une plainte</a>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+            <section id="A propos" class="A propos section">
+                <div class="container section-title aos-init aos-animate" data-aos="fade-up">
+                    <h2>A propos</h2>
+                    <p>"Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit"></p>
+                </div>
+
+                <div class="container">
+                    <div class="row gy-3">
+                        <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                            <img src="#" alt class="img-fluid">
+                        </div>
+
+                        <div class="col-lg-6 d-flex flex-column justify-content-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                            <div class="about-content ps-0 ps-lg-3">
+                                <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumeda></h3>
+                                <p class="fst-italic">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempur incididunt"></p>
+                                <ul>
+                                    <li>
+                                        <i class="bi bi-diagram-3"></i>
+                                        <div>
+                                            <h4>Ullamvco laboris nisn ut aluroznnc consequat</h4>
+                                            <p>Magni facilis  repellundus cum exxepturi hfojfoj</p>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <i class="bi bi-bi-fullscreen-exit"></i>
+                                        <div>
+                                            <h4>Magnam soluta exercitationem reprehenderi</h4>
+                                            <p>Quo totam dolorum at pariatur aut distinction dolorum laudantium illo dillemma pasata redi</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <p>"Ullmaco laboris nisi ut aliquip ex ea commodo consequato. Duis aute iruro dolor in reprehenderit in jfshvuinzuhfniuzenjinauffznz
+                                    ziuhiujnfuehijfhurhikzejvbniurhgjkndklsv ljnefjvniuezn,virjegiopjtljghudnjkvbnoirezmgkmla;knmum</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cards" class="cards section light-background">
+
+                <div class="container">
+                    <div class="row no-gutters">
+                        <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="100">
+                            <span>01</span>
+                            <h4>Lorem Ipsum</h4>
+                            <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+                        </div>
+                    </div>
+                </div><!-- End Card Item -->
+
+                <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="200">
+                    <span>02</span>
+                    <h4>Repellat Nihil</h4>
+                    <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
+                </div><!-- End Card Item -->
+
+                <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="300">
+                    <span>03</span>
+                    <h4> Ad ad velit qui</h4>
+                    <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+                </div><!-- End Card Item -->
+
+                <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="400">
+                    <span>04</span>
+                    <h4>Repellendus molestiae</h4>
+                    <p>Inventore quo sint a sint rerum. Distinctio blanditiis deserunt quod soluta quod nam mider lando casa</p>
+                </div><!-- End Card Item -->
+
+                <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="400">
+                    <span>05</span>
+                    <h4>Sapiente Magnam</h4>
+                    <p>Vitae dolorem in deleniti ipsum omnis tempore voluptatem. Qui possimus est repellendus est quibusdam</p>
+                </div><!-- End Card Item -->
+
+                <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="600">
+                    <span>06</span>
+                    <h4>Facilis Impedit</h4>
+                    <p>Quis eum numquam veniam ea voluptatibus voluptas. Excepturi aut nostrum repudiandae voluptatibus corporis sequi</p>
+                </div><!-- End Card Item -->
+            </section>
+            </main>#}
+
+            <footer id="footer" class="footer dark-background">
+                <div class="container footer-top">
+                    <div class="row gy-4">
+                        <div class="col-lg-4 col-md-6 footer-A propos">
+                            <a href="#" class="logo d-flex align-items-center">
+                                <span class="sitename">Régie des Eaux"</span>
+                            </a>
+
+                            <div class="footer-contact pt-3">
+                                <p>565 Avenue de la Justice</p>
+                                <p>Commune de la Gombe, Kinshasa</p>
+                                <p class="mt-3">
+                                    <strong>Téléphone:</strong>
+                                    <span>+243 843 355 358</span>
+                                </p>
+                                <p>
+                                    <strong>Email:</strong>
+                                    <span>nourdineluzaya@hotmail.com</span>
+                                </p>
+                            </div>
+
+                            <div class="social-links d-flex mt-4">
+                                <a href>
+                                    <is class="bi bi-twitter-x"></i>
+                                </a>
+                                <a href>
+                                    <is class="bi bi-facebook"></i>
+                                </a>
+                                <a href>
+                                    <is class="bi bi-instagram"></i>
+                                </a>
+                                <a href>
+                                    <is class="bi bi-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
     </body>
 </html>

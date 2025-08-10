@@ -90,6 +90,11 @@ class Plainte
         return $this;
     }
 
+    /*public function __construct()
+    {
+        $this->date = new \DateTimeImmutable();
+    }*/
+
     public function getDateCreation(): ?\DateTime
     {
         return $this->dateCreation;

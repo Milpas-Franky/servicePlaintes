@@ -2,15 +2,15 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\User;
 use App\Entity\Plainte;
+use App\Entity\User;
 use App\Entity\Contact;
-//use App\Entity\Commentaire;
-//use App\Entity\Reponse;
+use App\Entity\Commentaire;
+use App\Entity\Reponse;
 use App\Entity\Commune;
 use App\Entity\Status;
 use App\Entity\TypePlainte;
-//use App\Entity\Role;
+use App\Entity\Role;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use App\Controller\Admin\PlainteCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
@@ -23,11 +23,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
-{
+{   
+    /*public function_construct(
+            private AdminUrlGenerator $adminUrlGenerator
+    ){
+    }*/
+    
+    #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
         //return parent::index();
         //return $this->render('admin/dashboard.html.twig');
+
+        //dump($this->getUser()); die;
 
         $url = $this->container->get(AdminUrlGenerator::class)
             ->setController(PlainteCrudController::class)
@@ -60,12 +68,12 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('ServicePlaintes - Administration');
+            ->setTitle('Gestion des Plaintes - Administration');
     }
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
 
         yield MenuItem::section('Gestion des utilisateurs');

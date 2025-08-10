@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service de Gestion des Plaintes!{% endblock %}
+
+{% block body %}
+    <style>
+        .bt_head{
+            background-color:#f2f9f9 ;
+            color: #ffffff;
+        }
+    </style>
+
+    {#<div class="hero">
+        <div class="container col-xxl-8 px-4 py-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6"></div>
+                <div class="col-lg-6">
+                    <h1 class="">
+                        <span style="color: grey">Vous avez une plainte ? Déposez-la et suivez son traitement en temps réel !</span>
+                    </h1>
+                    <p class="text-white">Votre satisfaction est notre priorité ! Nous nous investissons à 100% pour vous apporter une solution adaptée à votre situation</p>
+                    <p class="text-white">Tous nos différents services sont à votre disposition et vous pouvez nous contacter à tout moment</p
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start ">
+                        <a href="#" button type="button" class="btn  btn-sm px-4 me-md-2 bt_head ">Prendre un rendez-vous</button>
+                        <a href="#" button type="button" class="btn  btn-sm px-4 bt_head">En savoir plus</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-slide">
+            <div class="img-overlay" style="background-image: url('{{ asset('images/hero-bg.jpg') }}')"></div>
+        </div>
+    </div>#}
+
+     <main class="main"><!--Hero section!-->
+        <section id="hero" class="hero section dark-background">
+            <img src="assets/images/eau.jpg" alt data-aos="fade-in" class="aos-init aos-animate">
+                <div class="container text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <h2>Bienvenue sur notre site web</h2>
+                            <p>Vous avez une plainte ? Déposez-la et suivez son traitement en temps réel !</p>
+                            <a href="#Déposer une plainte" class="btn-déposer-une-plainte">Déposer une plainte</a>
+                        </div>
+                    </div>
+                </div>
+            </img>
+        </section>
+
+        <section id="A propos" class="A propos section">
+            <div class="container section-title aos-init aos-animate" data-aos="fade-up">
+                <h2>A propos</h2>
+                <p>"Nous sommes un service de la régie des eaux qui traitent vos plaintes et vous apportent une solution adaptée à votre situation</p>
+            </div>
+
+            <div class="container">
+                <div class="row gy-3">
+                    <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                        <img src="#" alt class="img-fluid">
+                    </div>
+
+                    <div class="col-lg-6 d-flex flex-column justify-content-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                        <div class="about-content ps-0 ps-lg-3">
+                            <h3>Votre satisfaction est notre priorité ! Nous nous investissons à 100% pour vous apporter une solution adaptée à votre situation</h3>
+                            <p class="fst-italic">Tous nos différents services sont à votre disposition et vous pouvez nous contacter à tout moment</p>
+                            <ul>
+                                <li>
+                                    <i class="bi bi-diagram-3"></i>
+                                    <div>
+                                        <h4>Ullamvco laboris nisn ut aluroznnc consequat</h4>
+                                        <p>Magni facilis  repellundus cum exxepturi hfojfoj</p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <i class="bi bi-bi-fullscreen-exit"></i>
+                                    <div>
+                                        <h4>Magnam soluta exercitationem reprehenderi</h4>
+                                        <p>Quo totam dolorum at pariatur aut distinction dolorum laudantium illo dillemma pasata redi</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <p>"Ullmaco laboris nisi ut aliquip ex ea commodo consequato. Duis aute iruro dolor in reprehenderit in jfshvuinzuhfniuzenjinauffznz
+                                ziuhiujnfuehijfhurhikzejvbniurhgjkndklsv ljnefjvniuezn,virjegiopjtljghudnjkvbnoirezmgkmla;knmum</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cards" class="cards section light-background">
+
+            <div class="container">
+                <div class="row no-gutters">
+                    <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="100">
+                        <span>01</span>
+                        <h4>Lorem Ipsum</h4>
+                        <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+                    </div>
+                </div>
+            </div><!-- End Card Item -->
+
+            <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="200">
+                <span>02</span>
+                <h4>Repellat Nihil</h4>
+                <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
+            </div><!-- End Card Item -->
+
+            <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="300">
+                <span>03</span>
+                <h4> Ad ad velit qui</h4>
+                <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+            </div><!-- End Card Item -->
+
+            <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="400">
+                <span>04</span>
+                <h4>Repellendus molestiae</h4>
+                <p>Inventore quo sint a sint rerum. Distinctio blanditiis deserunt quod soluta quod nam mider lando casa</p>
+            </div><!-- End Card Item -->
+
+            <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="400">
+                <span>05</span>
+                <h4>Sapiente Magnam</h4>
+                <p>Vitae dolorem in deleniti ipsum omnis tempore voluptatem. Qui possimus est repellendus est quibusdam</p>
+            </div><!-- End Card Item -->
+
+            <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="600">
+                <span>06</span>
+                <h4>Facilis Impedit</h4>
+                <p>Quis eum numquam veniam ea voluptatibus voluptas. Excepturi aut nostrum repudiandae voluptatibus corporis sequi</p>
+            </div><!-- End Card Item -->
+        </section>
+    </main>
+{% endblock %}

@@ -20,20 +20,20 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
-    public const LOGIN_ROUTE = 'app_login';
+    public const LOGIN_ROUTE = 'app_security_login';
 
     public function __construct(private UrlGeneratorInterface $urlGenerator) {}
 
     public function authenticate(Request $request): Passport
     {
         //$email = $request->getPayload()->getString('email');
-        $email = $request->request->get('email');
+        $email = $request->request->get('email', '');
 
         $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $email);
 
         return new Passport(
             new UserBadge($email),
-            new PasswordCredentials($request->request->get('password')),
+            new PasswordCredentials($request->request->get('password', '')),
 
             [
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),

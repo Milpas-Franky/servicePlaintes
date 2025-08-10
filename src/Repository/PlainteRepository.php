@@ -40,4 +40,14 @@ class PlainteRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
-}
+    
+        public function findAllWithRelations()
+        {
+            return $this->createQueryBuilder('p')
+                ->leftJoin('p.typePlainte', 'tp')->addSelect('tp')
+                ->leftJoin('p.user', 'u')->addSelect('u')
+                ->leftJoin('p.status', 's')->addSelect('s')
+                ->getQuery()
+                ->getResult();
+        }   
+    }
