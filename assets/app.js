@@ -1,7 +1,8 @@
 import './bootstrap.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import './card.js';
-// import './toggle.js';
+import './aos.js';
+import './toggle.js';
+import './card.js';
 /*
  * Welcome to your app's main JavaScript file!
  *

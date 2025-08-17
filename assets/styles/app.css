@@ -56,6 +56,14 @@
   --contrast-color: #ffffff;
 }
 
+body.dark-mode {
+  --background-color: #060606;
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  --surface-color: #252525;
+  --contrast-color: #ffffff;
+}
+
 /* Smooth scroll */
 :root {
   scroll-behavior: smooth;
@@ -157,6 +165,11 @@ h6 {
   z-index: 997;
 }
 
+.header {
+  position: sticky;
+  top: 0;
+}
+
 .header .logo {
   line-height: 1;
 }
@@ -183,6 +196,8 @@ h6 {
 .scrolled .header {
   --background-color: rgba(0, 0, 0, 0.9);
 }
+
+
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -443,6 +458,24 @@ h6 {
   .mobile-nav-active .navmenu>ul {
     display: block;
   }
+
+  @media (max-width: 768px) {
+  .footer .footer-top {
+    padding-top: 30px;
+  }
+
+  .footer .footer-about,
+  .footer .footer-links,
+  .footer .footer-contact,
+  .footer .footer-newsletter {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .footer .social-links {
+    justify-content: center;
+  }
+}
 }
 
 /*--------------------------------------------------------------
@@ -659,6 +692,14 @@ h6 {
   transition: all 0.4s;
 }
 
+.scroll-top {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-top:hover {
+  transform: scale(1.1);
+}
+
 .scroll-top i {
   font-size: 24px;
   color: var(--contrast-color);
@@ -735,6 +776,19 @@ section,
   overflow: clip;
 }
 
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 1199px) {
 
   section,
@@ -773,6 +827,13 @@ section,
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.hero {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .hero img {
@@ -922,6 +983,19 @@ section,
   font-size: 15px;
   margin: 0;
   padding: 0;
+}
+
+.card {
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 /*--------------------------------------------------------------
@@ -1461,6 +1535,14 @@ section,
   color: var(--accent-color);
 }
 
+input:invalid {
+  border-color: #df1529;
+}
+
+input:valid {
+  border-color: #059652;
+}
+
 /*--------------------------------------------------------------
 # Contact Section
 --------------------------------------------------------------*/
@@ -1695,6 +1777,30 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+.starter-section {
+  background-color: var(--surface-color);
+  padding: 80px 0;
+  text-align: center;
+}
+
+.starter-section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.starter-section .btn-start {
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  padding: 12px 30px;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.starter-section .btn-start:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
 
