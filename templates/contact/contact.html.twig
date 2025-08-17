@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block body %}
+<form id="ajax-form">
+  <input type="text" name="name" placeholder="Nom">
+  <input type="email" name="email" placeholder="Email">
+  <textarea name="message" placeholder="Message"></textarea>
+  <button type="submit">Envoyer</button>
+</form>
+<div id="form-response"></div>
+{% endblock %}

@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './aos.js';
 import './toggle.js';
 import './card.js';
+import './contact.js';
 /*
  * Welcome to your app's main JavaScript file!
  *
