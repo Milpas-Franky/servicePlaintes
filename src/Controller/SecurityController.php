@@ -34,10 +34,7 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    /**
-     * @Route("/inscription", name="app_security_registration", methods={"GET", "POST"})
-    *
-     */
+    
     #[Route(path: '/inscription', name: 'app_security_registration', methods : ['GET', 'POST'])]
     public function registration(Request $request, EntityManagerInterface $manager): Response
     {
