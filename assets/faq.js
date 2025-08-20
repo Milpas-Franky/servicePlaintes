@@ -4,3 +4,9 @@ document.querySelectorAll('.faq-item h3').forEach(header => {
     item.classList.toggle('faq-active');
   });
 });
+
+// AOS init
+AOS.init({
+  duration: 800,
+  once: true
+});

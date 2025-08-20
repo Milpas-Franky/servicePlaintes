@@ -77,13 +77,14 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
 
         yield MenuItem::section('Gestion des utilisateurs');
+        //yield MenuItem::
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
-        //yield MenuItem::linkToCrud('Rôles', 'fas fa-user-shield', Role::class);
+        yield MenuItem::linkToCrud('Rôles', 'fas fa-user-shield', Role::class);
 
         yield MenuItem::section('Gestion des plaintes');
         yield MenuItem::linkToCrud('Plaintes', 'fas fa-file-alt', Plainte::class);
-        //yield MenuItem::linkToCrud('Commentaires', 'fas fa-comments', Commentaire::class);
-        //yield MenuItem::linkToCrud('Réponses', 'fas fa-reply', Reponse::class);
+        yield MenuItem::linkToCrud('Commentaires', 'fas fa-comments', Commentaire::class);
+        yield MenuItem::linkToCrud('Réponses', 'fas fa-reply', Reponse::class);
         yield MenuItem::linkToCrud('Types de plainte', 'fas fa-list', TypePlainte::class);
         yield MenuItem::linkToCrud('Statuts', 'fas fa-flag', Status::class);
 

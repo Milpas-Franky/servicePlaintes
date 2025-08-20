@@ -10,16 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class SecurityController extends AbstractController
 {
     #[Route(path: '/login', name: 'app_security_login', methods :['GET', 'POST'])]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
-
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -36,7 +33,7 @@ class SecurityController extends AbstractController
 
     
     #[Route(path: '/inscription', name: 'app_security_registration', methods : ['GET', 'POST'])]
-    public function registration(Request $request, EntityManagerInterface $manager): Response
+    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
         $user->setRoles(['ROLE_USER']);
@@ -46,16 +43,15 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
 
-            $this->addFlash(
-                'success',
-                'Votre compte a bien été créé.'
-            );
+            
             $manager->persist($user);
             $manager->flush();
+
+            $this->addFlash('success','Votre compte a bien été créé.');
             return $this->redirectToRoute('app_security_login');
         }
-        return $this->render('security/register.html.twig', [
-            'form' => $form->createView()
-        ]);
+        // return $this->render('security/register.html.twig', [
+            // 'form' => $form->createView()
+        ;
     }
 }

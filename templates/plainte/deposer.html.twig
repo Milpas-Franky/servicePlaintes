@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Déposer une plainte{% endblock %}
+
+{% block body %}
+<section class="section light-background">
+  <div class="container">
+    <div class="section-title">
+      <h2>Déposer une plainte</h2>
+      <p>Remplissez le formulaire ci-dessous pour soumettre votre plainte</p>
+    </div>
+
+    {% for label, messages in app.flashes %}
+      {% for message in messages %}
+        <div class="alert alert-{{ label }}">{{ message }}</div>
+      {% endfor %}
+    {% endfor %}
+
+    <div class="php-email-form">
+      {{ form_start(form) }}
+        {{ form_row(form.objet) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.typePlainte) }}
+        {{ form_row(form.commune) }}
+        <button type="submit">Soumettre</button>
+      {{ form_end(form) }}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -6,6 +6,11 @@
     <div class="rounded ">
         <div class="col-md-12 col-sm-12 shadow-lg p-5 bg-light mb-4">
         <h1 class="mt-4">Formulaire d'inscription</h1>
+        {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">{{ message }}</div>
+        {% endfor %}
+        {% endfor %}
         {{ form(form) }}
         </div>
     </div>

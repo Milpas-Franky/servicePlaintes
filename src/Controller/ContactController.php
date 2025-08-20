@@ -13,7 +13,7 @@ final class ContactController extends AbstractController
 
     public function contactAjax(Request $request): Response
     {
-        $name = $request->get('nom');
+        $nom = $request->get('nom');
         $email = $request->get('email');
         $message = $request->get('message');
 

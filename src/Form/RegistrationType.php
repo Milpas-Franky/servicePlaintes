@@ -106,10 +106,6 @@ class RegistrationType extends AbstractType
                     new Assert\Length(['min' => 2, 'max' => 180])
                 ]
             ])
-            /*->add('roles', EntityType::class, [
-                'class' => Roles::class,
-                'choice_label' => 'nom' 
-            ])*/
             ->add('role', EntityType::class, [
                 'class' => Role::class,
                 'choice_label' => 'id',

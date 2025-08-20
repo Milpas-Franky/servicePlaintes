@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SuiviPlainteController!{% endblock %}
+
+{% block body %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Suivi de plainte{% endblock %}
+
+{% block body %}
+<section class="section dark-background">
+  <div class="container mt-5">
+      <div class="section-title">
+        <h2>Suivre votre plainte</h2>
+        <p>Entrez votre code de suivi pour consulter l’état de votre plainte</p>
+      </div>
+
+      <form method="post" class="php-email-form">
+        <input type="text" name="code_suivi" placeholder="Entrez votre code de suivi" class="form-control mb-3" required>
+        <button type="submit" class="btn btn-primary">Suivre</button>
+      </form>
+
+      {% if plainte %}
+      <div class="alert alert-success mt-4">
+        <strong>Plainte trouvée !</strong> Voici les détails :
+        </div>
+        <div class="card mt-3">
+          <span>Code : {{ plainte.codeSuivi }}</span>
+          <h4>Objet : {{ plainte.objet }}</h4>
+          <p>Description : {{ plainte.description }}</p>
+          <p><strong>Statut : </strong> {{ plainte.status.nom }}</p>
+          <p><strong>Date de création : </strong> {{ plainte.dateCreation|date('d/m/Y H:i') }}</p>
+        </div>
+      {% elseif code is not empty %}
+      <div class="alert alert-danger mt-4">Aucune plainte trouvée avec ce code.</div>
+    {% endif %}
+    </div>
+  </section>
+{% endblock %}
+{% endblock %}

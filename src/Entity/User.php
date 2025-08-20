@@ -66,7 +66,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var Collection<int, Plainte>
      */
     #[ORM\OneToMany(targetEntity: Plainte::class, mappedBy: 'user')]
-    private Collection $plainte;
+    private Collection $plaintes;
 
     /**
      * @var Collection<int, Commentaire>

@@ -3,283 +3,227 @@
 {% block title %}Service de Gestion des Plaintes!{% endblock %}
 
 {% block body %}
-    <style>
+  {#<style>
         .bt_head{
             background-color:#f2f9f9 ;
             color: #ffffff;
         }
-    </style>
+  </style>#}
 
-    {#<div class="hero">
-        <div class="container col-xxl-8 px-4 py-5">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6"></div>
-                <div class="col-lg-6">
-                    <h1 class="">
-                        <span style="color: grey">Vous avez une plainte ? Déposez-la et suivez son traitement en temps réel !</span>
-                    </h1>
-                    <p class="text-white">Votre satisfaction est notre priorité ! Nous nous investissons à 100% pour vous apporter une solution adaptée à votre situation</p>
-                    <p class="text-white">Tous nos différents services sont à votre disposition et vous pouvez nous contacter à tout moment</p
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start ">
-                        <a href="#" button type="button" class="btn  btn-sm px-4 me-md-2 bt_head ">Prendre un rendez-vous</button>
-                        <a href="#" button type="button" class="btn  btn-sm px-4 bt_head">En savoir plus</button>
-                    </div>
-                </div>
-            </div>
+  <body class="body"><!--Hero section!-->
+    <section id="hero" class="hero section dark-background">
+      <img src="{{ asset('images/mains.jpg') }}" alt data-aos="fade-in" class="aos-init aos-animate">
+      <div class="container text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2>Bienvenue sur notre plate-forme</h2>
+            <p>Vous avez une plainte ? Déposez-la ici et suivez son traitement en temps réel.</p>
+            <a href="#Déposer une plainte" class="btn-déposer-une-plainte">Déposer une plainte</a>
+          </div>
         </div>
-        <div class="hero-slide">
-            <div class="img-overlay" style="background-image: url('{{ asset('images/hero-bg.jpg') }}')"></div>
-        </div>
-    </div>#}
+      </div>
+    </section>
 
-     <main class="main"><!--Hero section!-->
-        {# <section class="fade-in">...</section> #}
-        <section id="hero" class="hero section dark-background">
-            <img src="{{ asset('images/mains.jpg') }}" alt data-aos="fade-in" class="aos-init aos-animate">
-                <div class="container text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <h2>Bienvenue sur notre site web</h2>
-                            <p>Vous avez une plainte ? Déposez-la et suivez son traitement en temps réel !</p>
-                            <a href="#Déposer une plainte" class="btn-déposer-une-plainte">Déposer une plainte</a>
-                        </div>
-                    </div>
-                </div>
-            </img>
-        </section>
+    <section class="about" data-aos="fade-up" data-aos-delay="200">...</section>
+    <section id="A propos" class="A propos section">
+      <div class="container section-title aos-init aos-animate" data-aos="fade-up">
+        <h2>A propos</h2>
+        <p>"Nous sommes un service de la régie des eaux qui traitent vos plaintes et vous apportent une solution adaptée à votre situation</p>
+      </div>
 
-        <section class="about" data-aos="fade-up" data-aos-delay="200">...</section>
-        <section id="A propos" class="A propos section">
-            <div class="container section-title aos-init aos-animate" data-aos="fade-up">
-                <h2>A propos</h2>
-                <p>"Nous sommes un service de la régie des eaux qui traitent vos plaintes et vous apportent une solution adaptée à votre situation</p>
-            </div>
-
-            <div class="container">
-                <div class="row gy-3">
-                    <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                        <img src="{{ asset('images/sourire.jpg')}}" alt class="img-fluid">
-                    </div>
-
-                    <div class="col-lg-6 d-flex flex-column justify-content-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                        <div class="about-content ps-0 ps-lg-3">
-                            <h3>Votre satisfaction est notre priorité ! Nous nous investissons à 100% pour vous apporter une solution adaptée à votre situation</h3>
-                            <p class="fst-italic">Tous nos différents services sont à votre disposition et vous pouvez nous contacter à tout moment</p>
-                            <ul>
-                                <li>
-                                    <i class="bi bi-diagram-3"></i>
-                                    <div>
-                                        <h4>Ullamvco laboris nisn ut aluroznnc consequat</h4>
-                                        <p>Magni facilis  repellundus cum exxepturi hfojfoj</p>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <i class="bi bi-bi-fullscreen-exit"></i>
-                                    <div>
-                                        <h4>Magnam soluta exercitationem reprehenderi</h4>
-                                        <p>Quo totam dolorum at pariatur aut distinction dolorum laudantium illo dillemma pasata redi</p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <p>"Ullmaco laboris nisi ut aliquip ex ea commodo consequato. Duis aute iruro dolor in reprehenderit in jfshvuinzuhfniuzenjinauffznz
-                                ziuhiujnfuehijfhurhikzejvbniurhgjkndklsv ljnefjvniuezn,virjegiopjtljghudnjkvbnoirezmgkmla;knmum</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="cards" class="cards section light-background">
-
-            <div class="container">
-                <div class="row no-gutters">
-                    <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="100">
-                        <span>01</span>
-                        <h4>Lorem Ipsum</h4>
-                        <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
-                    </div>
-                </div>
-            </div><!-- End Card Item -->
-
-            <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="200">
-                <span>02</span>
-                <h4>Repellat Nihil</h4>
-                <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
-            </div><!-- End Card Item -->
-
-            <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="300">
-                <span>03</span>
-                <h4> Ad ad velit qui</h4>
-                <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
-            </div><!-- End Card Item -->
-
-            <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="400">
-                <span>04</span>
-                <h4>Repellendus molestiae</h4>
-                <p>Inventore quo sint a sint rerum. Distinctio blanditiis deserunt quod soluta quod nam mider lando casa</p>
-            </div><!-- End Card Item -->
-
-            <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="400">
-                <span>05</span>
-                <h4>Sapiente Magnam</h4>
-                <p>Vitae dolorem in deleniti ipsum omnis tempore voluptatem. Qui possimus est repellendus est quibusdam</p>
-            </div><!-- End Card Item -->
-
-            <div class="col-lg-4 col-md-6 card aos-init" data-aos="fade-up" data-aos-delay="600">
-                <span>06</span>
-                <h4>Facilis Impedit</h4>
-                <p>Quis eum numquam veniam ea voluptatibus voluptas. Excepturi aut nostrum repudiandae voluptatibus corporis sequi</p>
-            </div><!-- End Card Item -->
-        </section>
-
-        <!---Section Services!-->
-        <section id="Nos services" class="services-section">
-          <div class="container section-title aos-init aos-animate" data-aos="fade-up">
-            <h2>Nos Services</h2>
-            <p>Ce que nous vous apportons</p>
+      <div class="container">
+        <div class="row gy-3">
+          <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+            <img src="{{ asset('images/sourire.jpg')}}" alt class="img-fluid">
           </div>
 
-          <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                <div class="service-item item-cyan position-relative">
-                  <i class="bi bi-activity icon"></i>
-                  <div>
-                    <h3>Assistance</h3>
-                    <p>Un accompagnement personnalisé pour chaque plainte.</p>
-                    <a href="service-details.html" class="read-more stretched-link">Lire plus <i class="bi bi-arrow-right"></i></a>
-                  </div>
-                </div>
-              </div>
-
-            <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-              <div class="service-item item-orange position-relative">
-                <i class="bi bi-broadcast icon"></i>
-                <div>
-                  <h3>Contrôle qualité</h3>
-                  <p>Nous contrôlons et analysons la qualité et la potabilité de votre eau.</p>
-                  <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
-                </div>
-              </div>
-            </div><!-- End Service Item -->
-
-            <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-              <div class="service-item item-teal position-relative">
-                <i class="bi bi-easel icon"></i>
-                <div>
-                  <h3>Service clientèle</h3>
-                  <p>Nos équipes s'occupent de vous et s'attelent à vous apporter la meilleure solution à votre réclamation.</p>
-                  <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
-                </div>
-              </div>
+        <div class="col-lg-6 d-flex flex-column justify-content-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+          <div class="about-content ps-0 ps-lg-3">
+            <h3>Votre satisfaction est notre priorité ! Nous nous investissons à 100% pour vous apporter une solution adaptée à votre situation</h3>
+            <p class="fst-italic">Tous nos différents services sont à votre disposition et vous pouvez nous contacter à tout moment</p>
+            <ul>
+              <li>
+              <i class="bi bi-diagram-3"></i>
+            <div>
+              <h4>Protection</h4>
+              <p>Nous garantissons la confidentialité de vos signalements.</p>
             </div>
-
-            <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
-              <div class="service-item item-red position-relative">
-                <i class="bi bi-bounding-box-circles icon"></i>
-                <div>
-                  <h3>Réparation des Fuites</h3>
-                  <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
-                  <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="500">
-              <div class="service-item item-indigo position-relative">
-                <i class="bi bi-calendar4-week icon"></i>
-                <div>
-                  <h3>Conseils et Astuces</h3>
-                  <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
-                  <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="600">
-              <div class="service-item item-pink position-relative">
-                <i class="bi bi-chat-square-text icon"></i>
-                <div>
-                  <h3>Informations</h3>
-                  <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-                  <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
-                </div>
-              </div>
+              </li>
+              <li>
+                <i class="bi bi-bi-fullscreen-exit"></i>
+          <div>
+            <h4>Innovation</h4>
+            <p>Une plate-forme intuitive et sécurisée</p>
+          </div>
+                </li>
+              </ul>
+                <p>""</p>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
+      <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title aos-init" data-aos="fade-up">
+        <h2>Nos Services</h2>
+        <p>Ce que nous vous apportons</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row g-5">
+
+          <div class="col-lg-6 aos-init" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item item-cyan position-relative">
+              <i class="bi bi-activity icon"></i>
+              <div>
+                <h3>Assistance</h3>
+                <p>Un accompagnement personnalisé pour chaque plainte.</p>
+                <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 aos-init" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item item-orange position-relative">
+              <i class="bi bi-broadcast icon"></i>
+              <div>
+                <h3>Contrôle qualité</h3>
+                <p>Nous contrôlons et analysons la qualité et la potabilité de votre eau.</p>
+                <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 aos-init" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item item-teal position-relative">
+              <i class="bi bi-telephone icon"></i>
+              <div>
+                <h3>Call Force</h3>
+                <p>Nos équipes s'occupent de vous et s'attelent à vous apporter la meilleure solution à votre réclamation.</p>
+                <a href="service-details.html" class="read-more stretched-link">Lire plus <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 aos-init" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item item-red position-relative">
+              <i class="bi bi-technic-repairs icon"></i>
+              <div>
+                <h3>Réparation des Fuites</h3>
+                <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
+                <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 aos-init" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item item-indigo position-relative">
+              <i class="bi bi-astuces icon"></i>
+              <div>
+                <h3>Conseils et Astuces.</h3>
+                <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
+                <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 aos-init" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item item-pink position-relative">
+              <i class="bi bi-chat-square-text icon"></i>
+              <div>
+                <h3>  Informations</h3>
+                <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
+                <a href="service-details.html" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+
+    </section>
+
+      <!-- Section Title -->
       <section id="faq" class="faq section">
-
-        <!-- Section Title -->
         <div class="container section-title aos-init aos-animate" data-aos="fade-up">
           <h2>FAQ</h2>
-          <p></p>
+          <p>Questions Fréquentes</p>
         </div><!-- End Section Title -->
 
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-10 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
               <div class="faq-container">
-                <div class="faq-item faq-active">
-                  <h3>Comment déposer une plainte ?</h3>
+                <div class="faq-item">
+                  <h3><span class="num">01</span>Comment déposer une plainte ?</h3>
+                  <div class="faq-toggle"><i class="bi bi-chevron-down"></i></div>
                   <div class="faq-content">
                     <p>Il vous suffit de cliquer sur le bouton "déposer une plainte" et compléter le formulaire.</p>
                   </div>
-                  <i class="faq-toggle bi bi-chevron-right"></i>
+                  {# <i class="faq-toggle bi bi-chevron-right"></i> #}
                 </div>
 
                 <div class="faq-item">
-                  <h3>Comment suivre ma plainte introduite ?</h3>
+                  <h3><span class="num">02</span>Comment suivre ma plainte introduite ?</h3>
+                  <div class="faq-toggle"><i class="bi bi-chevron-down"></i></div>
                   <div class="faq-content">
                     <p>Il vous suffit d'introduire votre code de suivi sur la barre de recherche qui vous permettra de suivre l'état de votre plainte.</p>
                   </div>
-                  <i class="faq-toggle bi bi-chevron-right"></i>
+                  {# <i class="faq-toggle bi bi-chevron-right"></i> #}
                 </div>
 
                 <div class="faq-item">
-                  <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
-                  <div class="faq-content">
-                    <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
+                  <h3><span class="num">03</span>Où êtes-vous situé ?</h3>
+                  <div class="faq-toggle"><i class="bi bi-chevron-down"></i></div>
+                  <div class="faq-content faq-active">
+                    <p>Nos locaux sont situés sis 565, Avenue de la Justice dans la commune de Gombe en république démocratique du congo.</p>
                   </div>
-                  <i class="faq-toggle bi bi-chevron-right"></i>
+                  {# <i class="faq-toggle bi bi-chevron-right"></i> #}
                 </div><!-- End Faq item-->
 
                 <div class="faq-item">
-                  <h3>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h3>
+                  <h3><span class="num">04</span>Comment puis-je modifier mes données client ?</h3>
+                  <div class="faq-toggle"><i class="bi bi-chevron-down"></i></div>
                   <div class="faq-content">
-                    <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                    <p>Vous pouvez facilement modifier vos données une fois connecté dans votre espace abonné .</p>
                   </div>
-                  <i class="faq-toggle bi bi-chevron-right"></i>
+                  {# <i class="faq-toggle bi bi-chevron-right"></i> #}
                 </div><!-- End Faq item-->
 
                 <div class="faq-item">
-                  <h3>Tempus quam pellentesque nec nam aliquam sem et tortor?</h3>
+                  <h3><span class="num">05</span>Qu'est-ce qu'un règlement amiable en cas de fuite cachée ?</h3>
+                  <div class="faq-toggle"><i class="bi bi-chevron-down"></i></div>
                   <div class="faq-content">
-                    <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in</p>
+                    <p>En cas de fuite visible, les mêmes tarifs s'appliquent que dans le cas d'une consommation annuelle.</p>
                   </div>
-                  <i class="faq-toggle bi bi-chevron-right"></i>
+                  <i class="faq-toggle bi bi-chevron-down"></i>
                 </div><!-- End Faq item-->
 
                 <div class="faq-item">
-                  <h3>Perspiciatis quod quo quos nulla quo illum ullam?</h3>
+                  <h3><span class="num">06</span>Quelles sont les conditions générales de la Regideso ?</h3>
+                  <div class="faq-toggle"><i class="bi bi-chevron-down"></i></div>
                   <div class="faq-content">
-                    <p>Enim ea facilis quaerat voluptas quidem et dolorem. Quis et consequatur non sed in suscipit sequi. Distinctio ipsam dolore et.</p>
+                    <p>Nos conditions de livraison sont contenues dans le règlement général et spécial de la vente d'eau.</p>
                   </div>
-                  <i class="faq-toggle bi bi-chevron-right"></i>
+                  {# <i class="faq-toggle bi bi-chevron-right"></i> #}
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <section id="contact" class="contact section">
+      </section>
+ 
+    <section id="contact" class="contact section">
 
       <!-- Section Title -->
       <div class="container section-title aos-init aos-animate" data-aos="fade-up">
         <h2>Contact</h2>
-        <p>Vous souhaitez nous contacter pour en savoir plus sur nous ? Remplissez le formulaire ci-dessous et nous nous ferons le plaisir de vous répondre dans le plus bref délai.</p>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div><!-- End Section Title -->
 
       <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
@@ -292,8 +236,8 @@
               <div class="info-item d-flex aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
-                  <h3>Adresse</h3>
-                  <p>565 Avenue de la Justice, Kinshasa/Gombe, R.D.C</p>
+                  <h3>565, Avenue de la Justice</h3>
+                  <p>Kinshasa/Gombe, République Démocratique du Congo</p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -308,7 +252,7 @@
               <div class="info-item d-flex aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
                 <i class="bi bi-envelope flex-shrink-0"></i>
                 <div>
-                  <h3>Envoyez-nous un Email</h3>
+                  <h3>Email</h3>
                   <p>contact@regideso.com</p>
                 </div>
               </div><!-- End Info Item -->
@@ -327,7 +271,7 @@
                 </div>
 
                 <div class="col-md-6">
-                  <label for="email-field" class="pb-2">Votre Adresse Email</label>
+                  <label for="email-field" class="pb-2">Votre Email</label>
                   <input type="email" class="form-control" name="email" id="email-field" required="">
                 </div>
 
@@ -344,18 +288,17 @@
                 <div class="col-md-12 text-center">
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
-                  <div class="sent-message">Votre message a été envoyé. Merci!</div>
+                  <div class="sent-message">Votre message a été envoyé. Merci !</div>
 
                   <button type="submit">Envoyer Message</button>
                 </div>
+
               </div>
             </form>
           </div><!-- End Contact Form -->
         </div>
       </div>
-        </div>
-      </div>
+
     </section></section>
-      </section>
-    </main>
+    </body>
 {% endblock %}
