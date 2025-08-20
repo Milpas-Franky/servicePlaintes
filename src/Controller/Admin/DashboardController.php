@@ -77,19 +77,49 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
 
         yield MenuItem::section('Gestion des utilisateurs');
-        //yield MenuItem::
-        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
-        yield MenuItem::linkToCrud('Rôles', 'fas fa-user-shield', Role::class);
-
+        
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Create Utilisateurs', 'fas fa-user', User::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Utilisateurs', 'fas fa-eye', User::class)
+        ]);
+        
         yield MenuItem::section('Gestion des plaintes');
-        yield MenuItem::linkToCrud('Plaintes', 'fas fa-file-alt', Plainte::class);
-        yield MenuItem::linkToCrud('Commentaires', 'fas fa-comments', Commentaire::class);
-        yield MenuItem::linkToCrud('Réponses', 'fas fa-reply', Reponse::class);
-        yield MenuItem::linkToCrud('Types de plainte', 'fas fa-list', TypePlainte::class);
-        yield MenuItem::linkToCrud('Statuts', 'fas fa-flag', Status::class);
+
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Create Plaintes', 'fas fa-file-alt', Plainte::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Plaintes', 'fas fa-eye', Plainte::class)
+        ]);
+        
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+              MenuItem::linkToCrud('Create Commentaires', 'fas fa-comments', Commentaire::class)->setAction(Crud::PAGE_NEW),
+              MenuItem::linkToCrud('Show Commentaires', 'fas fa-eye', Commentaire::class)
+        ]);
+        
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+              MenuItem::linkToCrud('Create Reponses', 'fas fa-reply', Reponse::class)->setAction(Crud::PAGE_NEW),
+              MenuItem::linkToCrud('Show Reponses', 'fas fa-eye', Reponse::class)
+        ]);
+        
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+              MenuItem::linkToCrud('Create Types de plainte', 'fas fa-list', TypePlainte::class)->setAction(Crud::PAGE_NEW),
+              MenuItem::linkToCrud('Show Types de plainte', 'fas fa-eye', TypePlainte::class)
+        ]);
+        
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+              MenuItem::linkToCrud('Create Statuts', 'fas fa-flag', Status::class)->setAction(Crud::PAGE_NEW),
+              MenuItem::linkToCrud('Show Statuts', 'fas fa-eye', Status::class)
+        ]);
 
         yield MenuItem::section('Autres');
-        yield MenuItem::linkToCrud('Communes', 'fas fa-city', Commune::class);
-        yield MenuItem::linkToCrud('Contacts', 'fas fa-envelope', Contact::class);
+
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+              MenuItem::linkToCrud('Create Communes', 'fas fa-city', Commune::class)->setAction(Crud::PAGE_NEW),
+              MenuItem::linkToCrud('Show Communes', 'fas fa-eye', Commnune::class)
+        ]);
+        
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+              MenuItem::linkToCrud('Create Contacts', 'fas fa-envelope', Contact::class)->setAction(Crud::PAGE_NEW),
+              MenuItem::linkToCrud('Show Contacts', 'fas fa-eye', Contact::class)
+        ]);
     }
 }

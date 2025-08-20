@@ -23,4 +23,6 @@ final class UserController extends AbstractController
     {
         return $this->render('user/dashboard.html.twig');
     }
+
+    
 }

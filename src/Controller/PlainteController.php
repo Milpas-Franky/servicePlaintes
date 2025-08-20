@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class PlainteController extends AbstractController
 {
@@ -20,60 +21,67 @@ final class PlainteController extends AbstractController
     public function index(PlainteRepository $plainteRepository): Response
     {
         $plaintes = $plainteRepository->findAll();
-        
+
         return $this->render('plainte/index.html.twig', [
             //'controller_name' => 'PlainteController',
-            'plaintes' => $plaintes, 
+            'plaintes' => $plaintes,
             'resource' => 'plaintes',
         ]);
     }
 
-    #[Route('/new', name: 'app_plainte_new', methods: ['GET', 'POST'])] 
-    public function new(Request $request, EntityManagerInterface $entityManager): Response 
-    { 
-        $plainte = new Plainte(); $form = $this->createForm(PlainteType::class, $plainte); 
-        $form->handleRequest($request); 
-        
-        if ($form->isSubmitted() && $form->isValid()) { 
-            $entityManager->persist($plainte); $entityManager->flush(); 
-            return $this->redirectToRoute('app_plainte_index', [], Response::HTTP_SEE_OTHER); 
-        } 
-        
-        return $this->render('plainte/new.html.twig', [ 
-            'commentaire' => $plainte, 
-            'form' => $form, ]); 
-    }
-
-    #[Route('/plainte/{id}', name: 'app_plainte_show', methods: ['GET'])] 
-    public function show(Plainte $plainte): Response 
-    { 
-        return $this->render('plainte/show.html.twig', [ 'plainte' => $plainte, ]); 
-    }
-    
-    #[Route('/plainte/{id}/edit', name: 'app_plainte_edit', methods: ['GET', 'POST'])] 
-    public function edit(Request $request, Plainte $plainte, EntityManagerInterface $entityManager): Response 
+    #[Route('/new', name: 'app_plainte_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(PlainteType::class, $plainte); 
-        $form->handleRequest($request); 
-        
-        if ($form->isSubmitted() && $form->isValid()) { 
-            $entityManager->flush(); 
-            return $this->redirectToRoute('app_plainte_index', [], Response::HTTP_SEE_OTHER); 
-        } 
-        return $this->render('plainte/edit.html.twig', [ 'plainte' => $plainte, 'form' => $form, ]); 
+        $plainte = new Plainte();
+        $form = $this->createForm(PlainteType::class, $plainte);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($plainte);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_plainte_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('plainte/new.html.twig', [
+            'commentaire' => $plainte,
+            'form' => $form,
+        ]);
     }
 
-    #[Route('plainte/{id}', name: 'app_plainte_delete', methods: ['POST'])] 
-    public function delete(Request $request, Plainte $plainte, EntityManagerInterface $entityManager): Response 
-    { 
-        if ($this->isCsrfTokenValid('delete' . $plainte->getId(), 
-            $request->request->get('_token'))) { $entityManager->remove($plainte); 
-            $entityManager->flush(); 
-        } 
-        return $this->redirectToRoute('app_plainte_index', [], Response::HTTP_SEE_OTHER); 
+    #[Route('/plainte/{id}', name: 'app_plainte_show', methods: ['GET'])]
+    public function show(Plainte $plainte): Response
+    {
+        return $this->render('plainte/show.html.twig', ['plainte' => $plainte,]);
     }
-    
+
+    #[Route('/plainte/{id}/edit', name: 'app_plainte_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Plainte $plainte, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(PlainteType::class, $plainte);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            return $this->redirectToRoute('app_plainte_index', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render('plainte/edit.html.twig', ['plainte' => $plainte, 'form' => $form,]);
+    }
+
+    #[Route('plainte/{id}', name: 'app_plainte_delete', methods: ['POST'])]
+    public function delete(Request $request, Plainte $plainte, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid(
+            'delete' . $plainte->getId(),
+            $request->request->get('_token')
+        )) {
+            $entityManager->remove($plainte);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('app_plainte_index', [], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/deposer-plainte', name: 'app_deposer_plainte')]
+    #[IsGranted('ROLE_USER')]
     public function deposer(Request $request, EntityManagerInterface $em, MailerInterface $mailer): Response
     {
         $plainte = new Plainte();
@@ -98,28 +106,29 @@ final class PlainteController extends AbstractController
             $em->flush();
 
             $mailer = (new Email())
-            ->from('noreply@regideso.com')
-            ->to($plainte->getUser()->getEmail())
-            ->subject('Confirmation de votre plainte')
-            ->html('<p>Bonjour ' . $plainte->getUser()->getNom() . ',<br><br>
+                ->from('noreply@regideso.com')
+                ->to($plainte->getUser()->getEmail())
+                ->subject('Confirmation de votre plainte')
+                ->html('<p>Bonjour ' . $plainte->getUser()->getNom() . ',<br><br>
                 Votre plainte a été enregistrée avec succès.<br>
                 Code de suivi : <strong>' . $plainte->getCodeSuivi() . '</strong><br><br>
                 Nous vous tiendrons informé de son évolution.<br><br>
                 Merci pour votre confiance.</p>');
 
-                $mailer->send($email);
+            $mailer->send($email);
 
-                $this->addFlash('success', 'Votre plainte a été enregistrée. Un email de confirmation vous a été envoyé.');
-
-                return $this->redirectToRoute('app_deposer_plainte');
-            };
-
-            $this->addFlash('success', 'Votre plainte a été enregistrée. Code de suivi : ' . $plainte->getCodeSuivi());
+            $this->addFlash('success', 'Votre plainte a été enregistrée. Un email de confirmation vous a été envoyé.');
 
             return $this->redirectToRoute('app_deposer_plainte');
-        }
+        };
 
-            return $this->render('plaintes/deposer.html.twig', [
+        $this->addFlash('success', 'Votre plainte a été enregistrée. Code de suivi : ' . $plainte->getCodeSuivi());
+
+        return $this->redirectToRoute('app_deposer_plainte');
+
+
+        return $this->render('plaintes/deposer.html.twig', [
             'form' => $form->createView(),
         ]);
     }
+}
