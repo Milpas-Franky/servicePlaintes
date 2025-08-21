@@ -90,7 +90,7 @@ Inscription
 
 {{ form_end(form) }}
 
-{% endblock %}#}
+{% endblock %}
 
 {% extends 'base.html.twig' %}
 
@@ -120,6 +120,78 @@ Inscription
                 {% endif %}
             {% endfor %}
             <button type="submit" class="btn btn-primary w-100">Inscription</button>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}#}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-md-6 col-lg-5 bg-light p-5 rounded shadow">
+        <h2 class="mb-4 text-center">Créer un compte</h2>
+
+        {# Messages flash (succès/erreurs globales) #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">{{ message }}</div>
+            {% endfor %}
+        {% endfor %}
+
+        {{ form_start(form, {'attr': {'class': 'needs-validation'}, 'method': 'POST'}) }}
+
+            {# Champ email #}
+            <div class="mb-3">
+                {{ form_label(form.email, 'Adresse email', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.email) }}
+            </div>
+
+            {# Champ nom #}
+            <div class="mb-3">
+                {{ form_label(form.nom, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.nom) }}
+            </div>
+
+            {# Champ postnom #}
+            <div class="mb-3">
+                {{ form_label(form.postnom, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.postnom, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.postnom) }}
+            </div>
+
+            {# Champ prenom #}
+            <div class="mb-3">
+                {{ form_label(form.prenom, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.prenom) }}
+            </div>
+
+            {# Mot de passe + confirmation #}
+            <div class="mb-3">
+                {{ form_label(form.plainPassword.first, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.plainPassword.first) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.plainPassword.second, 'Confirmer le mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.plainPassword.second) }}
+            </div>
+
+            {# Téléphone #}
+            <div class="mb-3">
+                {{ form_label(form.telephone, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.telephone) }}
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Inscription</button>
+
         {{ form_end(form) }}
     </div>
 </div>
