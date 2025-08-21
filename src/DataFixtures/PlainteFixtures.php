@@ -51,7 +51,6 @@ class PlainteFixtures extends Fixture implements DependentFixtureInterface
             CommuneFixtures::class,
             TypePlainteFixtures::class,
             StatusFixtures::class,
-
         ];
     }
 }

@@ -2,9 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Role;
 use App\Entity\Plainte;
-use App\Entity\Status;
 use App\Entity\TypePlainte;
 use App\Entity\Commune;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -69,13 +67,12 @@ class PlainteType extends AbstractType
                 'class' => Commune::class,
                 'choice_label' => 'id',
             ])
-            >add('submit', SubmitType::class, [
+            ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary'
                 ],
                 'label' => 'Soumettre'
-            ]);
-        ;
+            ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

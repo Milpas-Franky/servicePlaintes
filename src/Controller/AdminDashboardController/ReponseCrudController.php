@@ -6,7 +6,7 @@ use App\Entity\Reponse;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeFieldField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 
 
 class ReponseCrudController extends AbstractCrudController
@@ -16,7 +16,7 @@ class ReponseCrudController extends AbstractCrudController
         return Reponse::class;
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -25,5 +25,4 @@ class ReponseCrudController extends AbstractCrudController
             DateTimeField::new('date'),
         ];
     }
-    
 }

@@ -18,7 +18,7 @@
           <div class="col-lg-8">
             <h2>Bienvenue sur notre plate-forme</h2>
             <p>Vous avez une plainte ? Déposez-la ici et suivez son traitement en temps réel.</p>
-            <a href="#Déposer une plainte" class="btn-déposer-une-plainte">Déposer une plainte</a>
+            <a href="{{ path('app_deposer_plainte') }}" class="btn-déposer-une-plainte">Déposer une plainte</a>
           </div>
         </div>
       </div>
@@ -73,9 +73,7 @@
       </div><!-- End Section Title -->
 
       <div class="container">
-
         <div class="row g-5">
-
           <div class="col-lg-6 aos-init" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item item-cyan position-relative">
               <i class="bi bi-activity icon"></i>
@@ -141,11 +139,8 @@
               </div>
             </div>
           </div><!-- End Service Item -->
-
         </div>
-
       </div>
-
     </section>
 
       <!-- Section Title -->
@@ -289,16 +284,13 @@
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
                   <div class="sent-message">Votre message a été envoyé. Merci !</div>
-
                   <button type="submit">Envoyer Message</button>
                 </div>
-
               </div>
             </form>
           </div><!-- End Contact Form -->
         </div>
       </div>
-
-    </section></section>
+    </section>
     </body>
 {% endblock %}

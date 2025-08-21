@@ -39,18 +39,16 @@
       </a>
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active">Accueil</a></li>
+          <li><a href="{{ path('app_home') }}" class="active">Accueil</a></li>
           <li><a href="#about" class="">A propos</a></li>
           <li><a href="#services" class="">Services</a></li>
-          {# <li><a href="#portfolio" class="">Portfolio</a></li> #}
           <li><a href="#team" class="">Notre Equipe</a></li>
           <li class="dropdown"><a href="#"><span>Plaintes</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              {# <li><a href="#">Gestion des Plaintes</a></li> #}
               <li class="dropdown"><a href="#"><span>Gestion des Plaintes</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a> #}
                 <ul>
-                  <li><a href="#">Déposer une plainte</a></li>
-                  <li><a href="#">Suivre une plainte</a></li>
+                  <li><a href="{{ path('app_deposer_plainte') }}">Déposer une plainte</a></li>
+                  <li><a href="{{ path('app_suivre_plainte') }}">Suivre une plainte</a></li>
                 </ul>
               </li>
             </ul>
@@ -82,8 +80,8 @@
             </div>
 
             {% if app.user %}
-                <li><a href="#" class="nav-link px-4 text-white">Déposer une plainte</a></li>
-                <li><a href="#" class="nav-link px-4 text-white">Suivre une plainte</a></li>
+                <li><a href="{{ path('app_deposer_plainte') }}" class="nav-link px-4 text-white">Déposer une plainte</a></li>
+                <li><a href="{{ path('app_suivre_plainte') }}" class="nav-link px-4 text-white">Suivre une plainte</a></li>
             {% endif %}
     </div>
   </header>

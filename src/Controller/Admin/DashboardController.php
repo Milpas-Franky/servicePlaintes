@@ -16,6 +16,7 @@ use App\Controller\Admin\PlainteCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,12 +24,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
-{   
+{
     /*public function_construct(
             private AdminUrlGenerator $adminUrlGenerator
     ){
     }*/
-    
+
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
@@ -77,49 +78,49 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
 
         yield MenuItem::section('Gestion des utilisateurs');
-        
+
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Create Utilisateurs', 'fas fa-user', User::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Show Utilisateurs', 'fas fa-eye', User::class)
         ]);
-        
+
         yield MenuItem::section('Gestion des plaintes');
 
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Create Plaintes', 'fas fa-file-alt', Plainte::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Show Plaintes', 'fas fa-eye', Plainte::class)
         ]);
-        
+
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-              MenuItem::linkToCrud('Create Commentaires', 'fas fa-comments', Commentaire::class)->setAction(Crud::PAGE_NEW),
-              MenuItem::linkToCrud('Show Commentaires', 'fas fa-eye', Commentaire::class)
+            MenuItem::linkToCrud('Create Commentaires', 'fas fa-comments', Commentaire::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Commentaires', 'fas fa-eye', Commentaire::class)
         ]);
-        
+
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-              MenuItem::linkToCrud('Create Reponses', 'fas fa-reply', Reponse::class)->setAction(Crud::PAGE_NEW),
-              MenuItem::linkToCrud('Show Reponses', 'fas fa-eye', Reponse::class)
+            MenuItem::linkToCrud('Create Reponses', 'fas fa-reply', Reponse::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Reponses', 'fas fa-eye', Reponse::class)
         ]);
-        
+
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-              MenuItem::linkToCrud('Create Types de plainte', 'fas fa-list', TypePlainte::class)->setAction(Crud::PAGE_NEW),
-              MenuItem::linkToCrud('Show Types de plainte', 'fas fa-eye', TypePlainte::class)
+            MenuItem::linkToCrud('Create Types de plainte', 'fas fa-list', TypePlainte::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Types de plainte', 'fas fa-eye', TypePlainte::class)
         ]);
-        
+
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-              MenuItem::linkToCrud('Create Statuts', 'fas fa-flag', Status::class)->setAction(Crud::PAGE_NEW),
-              MenuItem::linkToCrud('Show Statuts', 'fas fa-eye', Status::class)
+            MenuItem::linkToCrud('Create Statuts', 'fas fa-flag', Status::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Statuts', 'fas fa-eye', Status::class)
         ]);
 
         yield MenuItem::section('Autres');
 
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-              MenuItem::linkToCrud('Create Communes', 'fas fa-city', Commune::class)->setAction(Crud::PAGE_NEW),
-              MenuItem::linkToCrud('Show Communes', 'fas fa-eye', Commnune::class)
+            MenuItem::linkToCrud('Create Communes', 'fas fa-city', Commune::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Communes', 'fas fa-eye', Commune::class)
         ]);
-        
+
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-              MenuItem::linkToCrud('Create Contacts', 'fas fa-envelope', Contact::class)->setAction(Crud::PAGE_NEW),
-              MenuItem::linkToCrud('Show Contacts', 'fas fa-eye', Contact::class)
+            MenuItem::linkToCrud('Create Contacts', 'fas fa-envelope', Contact::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Contacts', 'fas fa-eye', Contact::class)
         ]);
     }
 }

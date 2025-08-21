@@ -95,10 +95,15 @@ final class PlainteController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             // Lier l'utilisateur connecté
             $plainte->setUser($this->getUser());
 
-            // Définir le statut initial
+            if (!$this->getUser()) {
+                throw $this->createAccessDeniedException('Vous devez être connecté pour déposer une plainte.');
+            }
+
+            // Définition du statut initial
             $status = $em->getRepository(Status::class)->findOneBy(['nom' => 'En attente']);
             $plainte->setStatus($status);
 
@@ -124,11 +129,35 @@ final class PlainteController extends AbstractController
 
         $this->addFlash('success', 'Votre plainte a été enregistrée. Code de suivi : ' . $plainte->getCodeSuivi());
 
-        return $this->redirectToRoute('app_deposer_plainte');
+        return $this->redirectToRoute('app_user_dashboard');
 
 
-        return $this->render('plaintes/deposer.html.twig', [
+        return $this->render('user/deposer.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/suivre-plainte', name: 'app_suivre_plainte')]
+    #[Route('', name: 'suivre_plainte_form', methods: ['GET', 'POST'])]
+    public function suivre(Request $request, PlainteRepository $repository): Response
+    {
+        $code = $request->request->get('code_suivi');
+        $plainte = $code ? $repository->findOneBy(['codeSuivi' => $code]) : null;
+
+        // Lier l'utilisateur connecté
+        //$plainte->setUser($this->getUser());
+
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException('Vous devez être connecté pour déposer une plainte.');
+        }
+
+        return $this->render(
+            'plainte/suivi.html.twig',
+            [
+                //'controller_name' => 'SuiviPlainteController', 
+                'plainte' => $plainte,
+                'code' => $code,
+            ]
+        );
     }
 }
