@@ -160,4 +160,15 @@ final class PlainteController extends AbstractController
             ]
         );
     }
+
+    #[Route('/mes-plaintes', name: 'app_user_plaintes')]
+    public function mesPlaintes(PlainteRepository $repo): Response
+    {
+        $user = $this->getUser();
+        $plaintes = $repo->findBy(['user' => $user]);
+
+        return $this->render('user/plaintes.html.twig', [
+            'plaintes' => $plaintes,
+        ]);
+    }
 }

@@ -9,8 +9,9 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <link rel="stylesheet" href="{{ asset('assets/styles/app.css') }}">
-        <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script src="{{ asset('assets/main.js') }}"></script>
 
         {% block stylesheets %}
         {% endblock %}
@@ -42,7 +43,7 @@
           <li><a href="{{ path('app_home') }}" class="active">Accueil</a></li>
           <li><a href="#about" class="">A propos</a></li>
           <li><a href="#services" class="">Services</a></li>
-          <li><a href="#team" class="">Notre Equipe</a></li>
+          <li><a href="#notreequipe" class="">Notre équipe</a></li>
           <li class="dropdown"><a href="#"><span>Plaintes</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li class="dropdown"><a href="#"><span>Gestion des Plaintes</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a> #}
@@ -60,7 +61,7 @@
 
       {% if is_granted('ROLE_ADMIN') %}
                     <li><a href="{{ path('admin') }}" class="nav-link px-4 text-white">Admin</a></li>
-                {% elseif is_granted('ROLE_ABONNE') %}
+                {% elseif is_granted('ROLE_USER') %}
                     <li><a href="{{ path('app_user_dashboard') }}" class="nav-link px-4 text-white">Espace Abonné</a></li>
                 {% endif %}
 
@@ -83,6 +84,12 @@
                 <li><a href="{{ path('app_deposer_plainte') }}" class="nav-link px-4 text-white">Déposer une plainte</a></li>
                 <li><a href="{{ path('app_suivre_plainte') }}" class="nav-link px-4 text-white">Suivre une plainte</a></li>
             {% endif %}
+
+            {% for label, messages in app.flashes %}
+            {% for message in messages %}
+              <div class="alert alert-{{ label }}">{{ message }}</div>
+            {% endfor %}
+            {% endfor %}
     </div>
   </header>
         {% block hero %}{% endblock %}
@@ -95,7 +102,7 @@
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">Regideso</span>
+            <span class="sitename">REGIDESO</span>
           </a>
           <div class="footer-contact pt-3">
             <p>565, Avenue de la Justice</p>
@@ -176,5 +183,6 @@
             });
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     </body>
 </html>

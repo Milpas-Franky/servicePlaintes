@@ -117,13 +117,13 @@ class RegistrationType extends AbstractType
                         'message' => 'Le numéro de téléphone doit contenir entre 9 et 20 chiffres.'
                     ])
                 ]
-            ]);
-        /*->add('submit', SubmitType::class, [
+            ])
+            ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary'
                 ],
-                'label' => 'Inscription'
-            ]);*/
+                'label' => 'Inscription',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\UserType;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
@@ -44,5 +45,28 @@ final class UserController extends AbstractController
         return $this->render('user/edit.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/modifier-infos', name: 'app_modifier_infos')]
+    #[IsGranted('ROLE_USER')]
+    public function modifierInfos(Request $request): Response
+    {
+        // À implémenter : formulaire pour modifier les infos de l'utilisateur
+        return $this->render('user/modifier_infos.html.twig');
+    }
+
+    #[Route('/confirmer/{token}', name: 'app_confirm_email')]
+    public function confirm(string $token, UserRepository $repo, EntityManagerInterface $em): Response
+    {
+        $user = $repo->findOneBy(['confirmationToken' => $token]);
+        if (!$user) {
+            throw $this->createNotFoundException();
+        }
+
+        $user->setConfirmationToken(null);
+        $em->flush();
+
+        $this->addFlash('success', 'Votre compte est maintenant activé.');
+        return $this->redirectToRoute('app_security_login');
     }
 }

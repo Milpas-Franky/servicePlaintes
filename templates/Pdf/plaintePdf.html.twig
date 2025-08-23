@@ -1,0 +1,3 @@
+$html = $this->renderView('user/plaintes_pdf.html.twig', ['plaintes' => $plaintes]);
+$pdf = $snappy->getOutputFromHtml($html);
+return new Response($pdf, 200, ['Content-Type' => 'application/pdf']);
