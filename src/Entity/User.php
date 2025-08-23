@@ -22,34 +22,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    
+
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    #[Assert\Length(min:2, max: 180)]
+    #[Assert\Length(min: 2, max: 180)]
     #[Assert\Email()]
-     
+
     private ?string $email = null;
 
     #[ORM\Column(type: 'string', length: 60)]
     #[Assert\NotNull]
     #[Assert\Length(min: 2, max: 60)]
-    
+
     private ?string $nom = null;
     #[ORM\Column(type: 'string', length: 60)]
     #[Assert\NotNull]
     #[Assert\Length(min: 2, max: 60)]
     private ?string $postnom = null;
 
-    
+
     #[ORM\Column(type: 'string', length: 60)]
     #[Assert\NotNull]
     #[Assert\Length(min: 2, max: 60)]
     private ?string $prenom = null;
 
-    
-    //@var string The hashed password
+
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank()]
     private ?string $password = null;
+
+    #[Assert\NotBlank]
+    private ?string $plainPassword = null;
 
     #[ORM\Column(length: 16)]
     private ?string $telephone = null;
@@ -58,15 +60,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotNull()]
     private array $roles = [];
 
-    #[ORM\ManyToOne(inversedBy: 'users')]
+    #[ORM\ManyToOne(targetEntity: Role::class, inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Role $role = null;
+
+
+
 
     /**
      * @var Collection<int, Plainte>
      */
     #[ORM\OneToMany(targetEntity: Plainte::class, mappedBy: 'user')]
-    private Collection $plainte;
+    private Collection $plaintes;
 
     /**
      * @var Collection<int, Commentaire>
@@ -88,7 +93,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->plainte = new ArrayCollection();
+        $this->plaintes = new ArrayCollection();
         $this->commentaire = new ArrayCollection();
         $this->Reponse = new ArrayCollection();
         $this->contact = new ArrayCollection();
@@ -155,6 +160,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): static
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
 
         return $this;
     }
@@ -234,13 +251,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getPlainte(): Collection
     {
-        return $this->plainte;
+        return $this->plaintes;
     }
 
     public function addPlainte(Plainte $plainte): static
     {
-        if (!$this->plainte->contains($plainte)) {
-            $this->plainte->add($plainte);
+        if (!$this->plaintes->contains($plainte)) {
+            $this->plaintes->add($plainte);
             $plainte->setUser($this);
         }
 
@@ -249,7 +266,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removePlainte(Plainte $plainte): static
     {
-        if ($this->plainte->removeElement($plainte)) {
+        if ($this->plaintes->removeElement($plainte)) {
             // set the owning side to null (unless already changed)
             if ($plainte->getUser() === $this) {
                 $plainte->setUser(null);

@@ -27,7 +27,7 @@ class Plainte
     #[ORM\Column]
     private ?\DateTime $dateCreation = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist'])]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'plaintes', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
@@ -54,6 +54,9 @@ class Plainte
      */
     #[ORM\OneToMany(targetEntity: Reponse::class, mappedBy: 'plainte')]
     private Collection $reponses;
+
+    #[ORM\Column(length: 100, unique: true)]
+    private ?string $codeSuivi = null;
 
     public function __construct()
     {
@@ -211,6 +214,18 @@ class Plainte
                 $reponse->setPlainte(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCodeSuivi(): ?string
+    {
+        return $this->codeSuivi;
+    }
+
+    public function setCodeSuivi(string $codeSuivi): static
+    {
+        $this->codeSuivi = $codeSuivi;
 
         return $this;
     }

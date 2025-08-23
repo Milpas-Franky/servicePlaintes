@@ -20,14 +20,17 @@ class PlainteFixtures extends Fixture implements DependentFixtureInterface
 
 
         // Création d'une plainte
-        $plainte = new Plainte();
-        $plainte->setObjet('Fuite d’eau au niveau du compteur');
-        $plainte->setDescription('Une fuite est visible à la base du compteur de l’abonné.');
-        $plainte->setDateCreation(new \DateTime());
-        $plainte->setUser($user);
-        $plainte->setTypePlainte($type);
-        $plainte->setStatus($status);
-        $plainte->setCommune($commune);
+        for ($i = 0; $i < 5; $i++) {
+            $plainte = new Plainte();
+            $plainte->setObjet('Fuite d’eau au niveau du compteur');
+            $plainte->setDescription('Une fuite est visible à la base du compteur de l’abonné.');
+            $plainte->setDateCreation(new \DateTime());
+            $plainte->setCodeSuivi(uniqid('PLN-'));
+            $plainte->setUser($user);
+            $plainte->setTypePlainte($type);
+            $plainte->setStatus($status);
+            $plainte->setCommune($commune);
+        }
 
 
         $manager->persist($plainte);
@@ -48,7 +51,6 @@ class PlainteFixtures extends Fixture implements DependentFixtureInterface
             CommuneFixtures::class,
             TypePlainteFixtures::class,
             StatusFixtures::class,
-
         ];
     }
 }

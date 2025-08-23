@@ -1,0 +1,23 @@
+{# templates/user/dashboard.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Abonné{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2>Bienvenue {{ app.user.nom }} !</h2>
+    <p>Que souhaitez-vous faire ?</p>
+
+    <div class="row">
+        <div class="col-md-4">
+            <a href="{{ path('app_deposer_plainte') }}" class="btn btn-primary w-100 mb-3">📨 Déposer une plainte</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ path('app_suivi_plainte') }}" class="btn btn-secondary w-100 mb-3">🔍 Suivre mes plaintes</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ path('app_user_edit') }}" class="btn btn-outline-dark w-100 mb-3">🔧 Modifier mes infos</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

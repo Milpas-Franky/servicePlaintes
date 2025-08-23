@@ -25,22 +25,23 @@ class RegistrationType extends AbstractType
             ->add('email', EmailType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'minlenght' => '2',
-                    'maxlenght' => '180'
+                    'minlength' => '2',
+                    'maxlength' => '180'
                 ],
-                'label' => 'Adresse email',
+                'label' => 'Email',
                 'label_attr' => [
                     'class' => 'form-label'
                 ],
                 'constraints' => [
+                    new Assert\Email(['message' => 'Email invalide.']),
                     new Assert\Length(['min' => 2, 'max' => 50])
                 ]
             ])
             ->add('nom', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'minlenght' => '2',
-                    'maxlenght' => '50'
+                    'minlength' => '2',
+                    'maxlength' => '50'
                 ],
                 'label' => 'Nom',
                 'label_attr' => [
@@ -54,8 +55,8 @@ class RegistrationType extends AbstractType
             ->add('postnom', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'minlenght' => '2',
-                    'maxlenght' => '50'
+                    'minlength' => '2',
+                    'maxlength' => '50'
                 ],
                 'label' => 'Postnom',
                 'label_attr' => [
@@ -69,8 +70,8 @@ class RegistrationType extends AbstractType
             ->add('prenom', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'minlenght' => '2',
-                    'maxlenght' => '50'
+                    'minlength' => '2',
+                    'maxlength' => '50'
                 ],
                 'label' => 'Prenom',
                 'label_attr' => [
@@ -81,21 +82,28 @@ class RegistrationType extends AbstractType
                     new Assert\Length(['min' => 2, 'max' => 180])
                 ]
             ])
-            ->add('password', RepeatedType::class, [
+            ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
+                'mapped' => false,
                 'first_options' => [
-                    'label' => 'Mot de passe'
+                    'label' => 'Mot de passe',
+                    'attr' => ['class' => 'form-control']
                 ],
                 'second_options' => [
-                    'label' => 'Confirmation du mot de passe'
+                    'label' => 'Confirmation du mot de passe',
+                    'attr' => ['class' => 'form-control']
                 ],
-                'invalid_message' => 'Les mots de passe ne correspondent pas.'
+                'invalid_message' => 'Les mots de passe ne correspondent pas.',
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Length(['min' => 6, 'max' => 4096])
+                ]
             ])
             ->add('telephone', NumberType::class, [
                 'attr' => [
-                    'class' => 'form-control', 
-                    'minlenght' => '9',
-                    'maxlenght' => '20'    
+                    'class' => 'form-control',
+                    'minlength' => '9',
+                    'maxlength' => '20'
                 ],
                 'label' => 'Telephone',
                 'label_attr' => [
@@ -103,22 +111,18 @@ class RegistrationType extends AbstractType
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
-                    new Assert\Length(['min' => 2, 'max' => 180])
+                    new Assert\Length(['min' => 2, 'max' => 180]),
+                    new Assert\Regex([
+                        'pattern' => '/^\d{9,20}$/',
+                        'message' => 'Le numéro de téléphone doit contenir entre 9 et 20 chiffres.'
+                    ])
                 ]
-            ])
-            /*->add('roles', EntityType::class, [
-                'class' => Roles::class,
-                'choice_label' => 'nom' 
-            ])*/
-            ->add('role', EntityType::class, [
-                'class' => Role::class,
-                'choice_label' => 'id',
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary'
                 ],
-                'label' => 'Inscription'
+                'label' => 'Inscription',
             ]);
     }
 

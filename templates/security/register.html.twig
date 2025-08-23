@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{#{% extends 'base.html.twig' %}
 
 {% block body %}
 
@@ -6,12 +6,331 @@
     <div class="rounded ">
         <div class="col-md-12 col-sm-12 shadow-lg p-5 bg-light mb-4">
         <h1 class="mt-4">Formulaire d'inscription</h1>
+        {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">{{ message }}</div>
+        {% endfor %}
+        {% endfor %}
+
         {{ form(form) }}
         </div>
     </div>
 </div>
+
 {% endblock %}
 
 {% block title %}
 Inscription
+{% endblock %}#}
+
+{#{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <div class="container vh-100" style="margin-top:100px">
+        <div class="rounded">
+            <div class="col-md-12 col-sm-12 shadow-lg p-5 bg-light mb-4">
+                <h1 class="mt-4">Formulaire d'inscription</h1>
+
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}">{{ message }}</div>
+                    {% endfor %}
+                {% endfor %}
+
+                {{ form_start(form, {'action': path('app_security_registration'), 'method': 'POST'}) }}
+                {% for field in form %}
+                    <div class="mb-3">
+                        {{ form_label(field) }}
+                        {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+                        {% for error in field.vars.errors %}
+                            <div class="text-danger">{{ error.message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Inscription</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+{{ form_start(form) }}
+
+{% for field in form %}
+    {% if field.vars.name != '_token' and field.vars.name != 'submit' %}
+        <div class="mb-3">
+            {{ form_label(field) }}
+            {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+
+            {% if field.vars.errors is defined and field.vars.errors|length > 0 %}
+                {% for error in field.vars.errors %}
+                    <div class="text-danger">{{ error.message }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% endif %}
+{% endfor %}
+
+{% if form.vars.errors|length > 0 %}
+    <div class="alert alert-danger">
+        {% for error in form.vars.errors %}
+            {{ error.message }}
+        {% endfor %}
+    </div>
+{% endif %}
+
+<button type="submit" class="btn btn-primary">Inscription</button>
+
+{{ form_end(form) }}
+
+{% endblock %}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-md-6 bg-light p-5 rounded shadow">
+        <h2 class="mb-4 text-center">Formulaire d'inscription</h2>
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">{{ message }}</div>
+            {% endfor %}
+        {% endfor %}
+
+        {{ form_start(form, {'action': path('app_security_registration'), 'method': 'POST'}) }}
+            {% for field in form %}
+                {% if field.vars.name != '_token' %}
+                    <div class="mb-3">
+                        {{ form_label(field) }}
+                        {{ form_widget(field) }}
+                        {% for error in field.vars.errors %}
+                            <div class="text-danger">{{ error.message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <button type="submit" class="btn btn-primary w-100">Inscription</button>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}#}
+
+{#{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-md-6 col-lg-5 bg-light p-5 rounded shadow">
+        <h2 class="mb-4 text-center">Créer un compte</h2>
+
+        {# Messages flash (succès/erreurs globales)
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">{{ message }}</div>
+            {% endfor %}
+        {% endfor %}
+
+        {{ form_start(form, {'attr': {'class': 'needs-validation'}, 'method': 'POST'}) }}
+
+            {# Champ email 
+            <div class="mb-3">
+                {{ form_label(form.email, 'Adresse email', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.email) }}
+            </div>
+
+            {# Champ nom 
+            <div class="mb-3">
+                {{ form_label(form.nom, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.nom) }}
+            </div>
+
+            {# Champ postnom 
+            <div class="mb-3">
+                {{ form_label(form.postnom, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.postnom, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.postnom) }}
+            </div>
+
+            {# Champ prenom 
+            <div class="mb-3">
+                {{ form_label(form.prenom, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.prenom) }}
+            </div>
+
+            {# Mot de passe + confirmation 
+            <div class="mb-3">
+                {{ form_label(form.plainPassword.first, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.plainPassword.first) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.plainPassword.second, 'Confirmer le mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.plainPassword.second) }}
+            </div>
+
+            {# Téléphone 
+            <div class="mb-3">
+                {{ form_label(form.telephone, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.telephone) }}
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Inscription</button>
+
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-md-6 bg-light p-5 rounded shadow">
+        <h2 class="mb-4 text-center">Créer un compte</h2>
+
+        {# Messages flash #
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">{{ message }}</div>
+            {% endfor %}
+        {% endfor %}
+
+        {{ form_start(form, {'action': path('app_security_registration'), 'method': 'POST'}) }}
+
+            <div class="mb-3">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+                {{ form_errors(form.email) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.nom) }}
+                {{ form_widget(form.nom) }}
+                {{ form_errors(form.nom) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.postnom) }}
+                {{ form_widget(form.postnom) }}
+                {{ form_errors(form.postnom) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.prenom) }}
+                {{ form_widget(form.prenom) }}
+                {{ form_errors(form.prenom) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.plainPassword.first) }}
+                {{ form_widget(form.plainPassword.first) }}
+                {{ form_errors(form.plainPassword.first) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.plainPassword.second) }}
+                {{ form_widget(form.plainPassword.second) }}
+                {{ form_errors(form.plainPassword.second) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.telephone) }}
+                {{ form_widget(form.telephone) }}
+                {{ form_errors(form.telephone) }}
+            </div>
+
+            {# IMPORTANT : Champ CSRF token #
+            {{ form_row(form._token) }}
+
+            <button type="submit" class="btn btn-primary w-100">Inscription</button>
+
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+</div>
+{% endblock %}#}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-md-6 bg-light p-5 rounded shadow">
+        <h2 class="mb-4 text-center">Créer un compte</h2>
+
+        {# Flash messages #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {{ form_start(form) }}
+            <div class="mb-3">
+                {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.email) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.nom) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.postnom, 'Postnom', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.postnom, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.postnom) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.prenom, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.prenom) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.plainPassword.first, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.plainPassword.first) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.plainPassword.second, 'Confirmation du mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.plainPassword.second) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.telephone, 'Téléphone', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.telephone) }}
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Inscription</button>
+        {{ form_end(form) }}
+    </div>
+</div>
 {% endblock %}

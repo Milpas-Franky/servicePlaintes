@@ -5,7 +5,6 @@ namespace App\Controller\AdminDashboardController;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class UserCrudController extends AbstractCrudController
@@ -18,11 +17,13 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            IdField::new('id')->hideOnForm(),
             TextField::new('email'),
-            TextEditorField::new('nom'),
-            TextEditorField::new('postnom'),
-            TextEditorField::new('prenom'),
+            TextField::new('nom'),
+            TextField::new('postnom'),
+            TextField::new('prenom'),
+            TextField::new('telephohe'),
+            TextField::new('roles'),
 
 
         ];
