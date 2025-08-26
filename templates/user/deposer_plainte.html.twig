@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Déposer une plainte{% endblock %}
+
+{% block body %}
+<section class="section light-background">
+  <div class="container">
+    <div class="section-title">
+      <h2>Déposer une plainte</h2>
+      <p>Remplissez le formulaire ci-dessous pour soumettre votre plainte</p>
+    </div>
+
+    {% for label, messages in app.flashes %}
+      {% for message in messages %}
+        <div class="alert alert-{{ label }}">{{ message }}</div>
+      {% endfor %}
+    {% endfor %}
+
+    <div class="php-email-form">
+      {{ form_start(form, {'action': path('app_deposer_plainte'), 'method': 'POST'})  }}
+
+        {# Champ objet #}
+          <div class="mb-3">
+                {{ form_label(form.objet, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.objet, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.objet) }}
+          </div>
+
+        {# Champ description #}
+          <div class="mb-3">
+                {{ form_label(form.description, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.description) }}
+          </div>
+        
+        {# Champ typePlainte #}
+          <div class="mb-3">
+                {{ form_label(form.typePlainte, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.typePlainte, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.typePlainte) }}
+          </div>
+
+        {# Champ Commune #}
+           <div class="mb-3">
+                {{ form_label(form.commune, null, {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.commune, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.commune) }}
+          </div>
+        <button type="submit">Soumettre</button>
+      {{ form_end(form) }}
+    </div>
+  </div>
+</section>
+{% endblock %}

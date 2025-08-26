@@ -214,8 +214,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         //$roles[] = 'ROLE_USER';
 
         $roles = $this->roles;
-        if (!in_array('ROLE_ABONNE', $roles)) {
-            $roles[] = 'ROLE_ABONNE';
+        if (!in_array('ROLE_USER', $roles)) {
+            $roles[] = 'ROLE_USER';
         }
 
         return array_unique($roles);

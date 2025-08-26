@@ -106,7 +106,7 @@ class UserType extends AbstractType
                 ]
             ])
 
-            ->add('roles')
+            //->add('roles')
         ;
     }
 

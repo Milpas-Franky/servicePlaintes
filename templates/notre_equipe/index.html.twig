@@ -3,18 +3,89 @@
 {% block title %}Hello NotreEquipeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<section id="team" class="team section">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Notre équipe</h2>
+    <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+  </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/wamp64/www/servicePlaintes/src/Controller/NotreEquipeController.php</code></li>
-        <li>Your template at <code>C:/wamp64/www/servicePlaintes/templates/notre_equipe/index.html.twig</code></li>
-    </ul>
-</div>
+  <div class="container">
+    <div class="row gy-4">
+
+      <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="member">
+          <img src="{{ asset('images/team-1.jpg') }}" class="img-fluid" alt="Walter White">
+          <div class="member-info">
+            <div class="member-info-content">
+              <h4>Walter White</h4>
+              <span>Chief Executive Officer</span>
+            </div>
+            <div class="social">
+              <a href="#"><i class="bi bi-twitter-x"></i></a>
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="member">
+          <img src="{{ asset('images/team-2.jpg') }}" class="img-fluid" alt="Sarah Jhonson">
+          <div class="member-info">
+            <div class="member-info-content">
+              <h4>Sarah Jhonson</h4>
+              <span>Product Manager</span>
+            </div>
+            <div class="social">
+              <a href="#"><i class="bi bi-twitter-x"></i></a>
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="member">
+          <img src="{{ asset('images/team-3.jpg') }}" class="img-fluid" alt="William Anderson">
+          <div class="member-info">
+            <div class="member-info-content">
+              <h4>William Anderson</h4>
+              <span>CTO</span>
+            </div>
+            <div class="social">
+              <a href="#"><i class="bi bi-twitter-x"></i></a>
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+        <div class="member">
+          <img src="{{ asset('images/team-4.jpg') }}" class="img-fluid" alt="Amanda Jepson">
+          <div class="member-info">
+            <div class="member-info-content">
+              <h4>Amanda Jepson</h4>
+              <span>Accountant</span>
+            </div>
+            <div class="social">
+              <a href="#"><i class="bi bi-twitter-x"></i></a>
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}

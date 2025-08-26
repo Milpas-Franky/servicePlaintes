@@ -286,7 +286,11 @@ Inscription
             {% endfor %}
         {% endfor %}
 
-        {{ form_start(form) }}
+        {# {{ form_start(form) }} #}
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+         {# erreurs globales #}
+        {{ form_errors(form) }}
+
             <div class="mb-3">
                 {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
@@ -329,7 +333,7 @@ Inscription
                 {{ form_errors(form.telephone) }}
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Inscription</button>
+            {# <button type="submit" class="btn btn-primary w-100">Inscription</button> #}
         {{ form_end(form) }}
     </div>
 </div>

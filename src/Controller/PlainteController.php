@@ -110,7 +110,7 @@ final class PlainteController extends AbstractController
             $em->persist($plainte);
             $em->flush();
 
-            $mailer = (new Email())
+            $email = (new Email())
                 ->from('noreply@regideso.com')
                 ->to($plainte->getUser()->getEmail())
                 ->subject('Confirmation de votre plainte')
@@ -124,15 +124,17 @@ final class PlainteController extends AbstractController
 
             $this->addFlash('success', 'Votre plainte a été enregistrée. Un email de confirmation vous a été envoyé.');
 
-            return $this->redirectToRoute('app_deposer_plainte');
-        };
+            // return $this->redirectToRoute('app_deposer_plainte');
+            return $this->redirectToRoute('app_user_dashboard');
+        }
 
         $this->addFlash('success', 'Votre plainte a été enregistrée. Code de suivi : ' . $plainte->getCodeSuivi());
 
-        return $this->redirectToRoute('app_user_dashboard');
+        // return $this->redirectToRoute('app_user_dashboard'); 
 
 
-        return $this->render('user/deposer.html.twig', [
+        return $this->render('user/deposer_plainte.html.twig', [
+            // return $this->render('plainte/deposer_plainte.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -148,7 +150,7 @@ final class PlainteController extends AbstractController
         //$plainte->setUser($this->getUser());
 
         if (!$this->getUser()) {
-            throw $this->createAccessDeniedException('Vous devez être connecté pour déposer une plainte.');
+            throw $this->createAccessDeniedException('Vous devez être connecté pour suivre une plainte.');
         }
 
         return $this->render(

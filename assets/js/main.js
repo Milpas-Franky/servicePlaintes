@@ -1,4 +1,4 @@
-// FAQ toggle
+/* FAQ toggle
 document.querySelectorAll('.faq-item h3').forEach(header => {
   header.addEventListener('click', () => {
     const item = header.closest('.faq-item');
@@ -10,13 +10,22 @@ document.querySelectorAll('.faq-item h3').forEach(header => {
 AOS.init({
   duration: 800,
   once: true
-});
+});*/
 
-<script>
+import flatpickr from "flatpickr";
+import { French } from "flatpickr/dist/l10n/fr.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  flatpickr(".flatpickr", {
+    enableTime: true,
+    dateFormat: "d/m/Y H:i",
+    locale: French,
+  });
+
   flatpickr(".flatpickr", {
     enableTime: true,
     dateFormat: "d/m/Y H:i",
     time_24hr: true,
     locale: "fr"
   });
-</script>
+});

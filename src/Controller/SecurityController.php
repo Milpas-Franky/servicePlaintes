@@ -180,10 +180,10 @@ class SecurityController extends AbstractController
     public function registration(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, MailerInterface $mailer, RoleRepository $roleRepository): Response
     {
         $user = new User();
-        $user->setRoles(['ROLE_USER']);
+        //$user->setRoles(['ROLE_USER']);
 
-        $role = $roleRepository->findOneBy(['nom' => 'ROLE_USER']);
-        $user->setRole($role);
+        //$role = $roleRepository->findOneBy(['nom' => 'ROLE_USER']);
+        //$user->setRole($role);
 
 
         $form = $this->createForm(RegistrationType::class, $user);
@@ -191,19 +191,28 @@ class SecurityController extends AbstractController
         // Important : handleRequest AVANT tout test
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Récupérer le plainPassword
-            $plainPassword = $form->get('plainPassword')->getData();
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $plain = $form->get('plainPassword')->getData();
+                $user->setPassword($passwordHasher->hashPassword($user, $plain));
+                // Donne un rôle minimal si besoin
+                if (!in_array('ROLE_USER', $user->getRoles(), true)) {
+                    $user->setRoles(['ROLE_USER']);
+                }
 
-            // Hashage du mot de passe
-            $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
-            $user->setPassword($hashedPassword);
+                //if ($form->isSubmitted() && $form->isValid()) {
+                // Récupérer le plainPassword
+                //$plainPassword = $form->get('plainPassword')->getData();
 
-            // Sauvegarde en base
-            $em->persist($user);
-            $em->flush();
+                // Hashage du mot de passe
+                //$hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
+                //$user->setPassword($hashedPassword);
 
-            /* Envoi de l'email de confirmation
+                // Sauvegarde en base
+                $em->persist($user);
+                $em->flush();
+
+                /* Envoi de l'email de confirmation
             try {
                 $email = (new Email())
                     ->from('noreply@regideso.com')
@@ -218,26 +227,33 @@ class SecurityController extends AbstractController
                 $this->addFlash('warning', 'Impossible d\'envoyer l\'email : ' . $e->getMessage());
             }*/
 
-            $email = (new Email())
+                /*$email = (new Email())
                 ->from('noreply@tonsite.com')
                 ->to($user->getEmail())
                 ->subject('Confirmez votre inscription')
                 ->html('<p>Merci de confirmer votre compte en cliquant sur ce lien : 
                               <a href="' . $this->generateUrl('app_confirm_email', ['token' => $user->getConfirmationToken()], UrlGeneratorInterface::ABSOLUTE_URL) . '">Confirmer</a></p>');
+            */
 
+                // Flash message
+                $this->addFlash('success', 'Votre compte a bien été créé. Vous pouvez maintenant vous connecter.');
 
-            // Flash message
-            $this->addFlash('success', 'Votre compte a bien été créé. Vous pouvez maintenant vous connecter.');
-
-            // Redirection vers la page de connexion
-            return $this->redirectToRoute('app_security_login');
+                // Redirection vers la page de connexion
+                return $this->redirectToRoute('app_security_login');
+                //return $this->redirectToRoute('app_user_dashboard');
+            } else {
+                // Montre clairement que le formulaire est invalide
+                $this->addFlash('danger', 'Le formulaire contient des erreurs.');
+            }
         }
 
         // Affichage du formulaire
         return $this->render('security/register.html.twig', [
-            'form' => $form->createView(),
+            // 'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
+
 
     #[Route('/confirmer/{token}', name: 'app_confirm_email')]
     public function confirm(string $token, UserRepository $repo, EntityManagerInterface $em): Response

@@ -62,6 +62,10 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($this->urlGenerator->generate('agent_dashboard'));
         }
 
+         if (in_array('ROLE_USER', $user->getRoles(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate('app_user_dashboard'));
+        }
+
         // Redirection par défaut
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
     }

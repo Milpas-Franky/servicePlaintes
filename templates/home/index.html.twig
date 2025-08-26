@@ -25,7 +25,7 @@
     </section>
 
     <section class="about" data-aos="fade-up" data-aos-delay="200">...</section>
-    <section id="A propos" class="A propos section">
+    <section id="about" class="about section">
       <div class="container section-title aos-init aos-animate" data-aos="fade-up">
         <h2>A propos</h2>
         <p>"Nous sommes un service de la régie des eaux qui traitent vos plaintes et vous apportent une solution adaptée à votre situation</p>
@@ -87,10 +87,10 @@
 
           <div class="col-lg-6 aos-init" data-aos="fade-up" data-aos-delay="200">
             <div class="service-item item-orange position-relative">
-              <i class="bi bi-broadcast icon"></i>
+              <i class="bi bi-flask icon"></i>
               <div>
                 <h3>Contrôle qualité</h3>
-                <p>Nous contrôlons et analysons la qualité, la potabilité de votre eau.</p>
+                <p>Nous contrôlons et analysons régulièrement la qualité, la potabilité de votre eau.</p>
                 <a href="#" class="read-more stretched-link">Lire plus <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
@@ -109,10 +109,10 @@
 
           <div class="col-lg-6 aos-init" data-aos="fade-up" data-aos-delay="400">
             <div class="service-item item-red position-relative">
-              <i class="bi bi-bounding-box-circles icon"></i>
+              <i class="bi bi-tools icon"></i>
               <div>
                 <h3>Réparation des Fuites</h3>
-                <p>Nos équipes techniques sont à pied d'oeuvre pour vous apporter une solution rapide à votre préoccupation.</p>
+                <p>Nos équipes techniques interviennent rapidement pour réparer les fuites sur le réseau.</p>
                 <a href="#" class="read-more stretched-link">Lire plus <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
@@ -145,7 +145,7 @@
 
       <!-- Team Section -->
 
-      <section id="team" class="team section">
+      {#<section id="team" class="team section">
 
       <!-- Section Title -->
       <div class="container section-title aos-init aos-animate" data-aos="fade-up">
@@ -230,7 +230,7 @@
           </div><!-- End Team Member -->
         </div>
       </div>
-    </section>
+    </section>#}
 
       <!-- Faq Section -->
       <section id="faq" class="faq section">
@@ -309,7 +309,7 @@
       <!-- Section Title -->
       <div class="container section-title aos-init aos-animate" data-aos="fade-up">
         <h2>Contact</h2>
-        <p>Vous trouverez ci-dessous toutes nos informations de contact ainsi qu'un formulaire pour nous dire votre préoccupation.</p>
+        <p>Vous trouverez ci-dessous toutes nos informations de contact ainsi qu'un formulaire pour nous faire part de votre préoccupation.</p>
       </div><!-- End Section Title -->
 
       <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
@@ -344,12 +344,11 @@
               </div><!-- End Info Item -->
 
               <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3978.5551878843517!2d15.2983685!3d-4.306187!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a6a33edf0ebd84b%3A0xfdbd72b2acc65e37!2sREGIDESO!5e0!3m2!1sfr!2sbe!4v1755934988696!5m2!1sfr!2sbe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              {# <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> #}
             </div>
           </div>
 
           <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+            <form id="ajax-form" method="post" class="php-email-form aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
               <div class="row gy-4">
 
                 <div class="col-md-6">

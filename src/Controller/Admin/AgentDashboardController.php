@@ -63,7 +63,7 @@ class AgentDashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Accueil', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
-
+        
         yield MenuItem::linkToCrud('Plaintes', 'fas fa-exclamation-triangle', Plainte::class);
         yield MenuItem::linkToCrud('Commentaires', 'fas fa-comments', Commentaire::class);
         yield MenuItem::linkToCrud('Réponses', 'fas fa-reply', Reponse::class);
