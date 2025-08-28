@@ -241,9 +241,9 @@ class SecurityController extends AbstractController
                 // Redirection vers la page de connexion
                 return $this->redirectToRoute('app_security_login');
                 //return $this->redirectToRoute('app_user_dashboard');
-            } else {
+                // } else {
                 // Montre clairement que le formulaire est invalide
-                $this->addFlash('danger', 'Le formulaire contient des erreurs.');
+                // $this->addFlash('danger', 'Le formulaire contient des erreurs.');
             }
         }
 

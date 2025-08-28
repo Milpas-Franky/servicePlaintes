@@ -14,6 +14,9 @@ final class ServicesController extends AbstractController
          $services = [
         ['title' => 'Assistance', 'description' => 'Support personnalisé', 'icon' => 'bi bi-chat-dots', 'color' => 'cyan'],
         ['title' => 'Sécurité', 'description' => 'Protection des données', 'icon' => 'bi bi-shield-lock', 'color' => 'red'],
+        ['title' => 'Confidentialité', 'description' => 'Respect à la vie privée', 'icon' => 'bi bi-shield-lock', 'color' => 'red'],
+        ['title' => 'Astuces et Conseils', 'description' => 'Protection des données', 'icon' => 'bi bi-shield-lock', 'color' => 'red'],
+        ['title' => 'Contrôle qualité', 'description' => 'Analyse et contrôle', 'icon' => 'bi bi-shield-lock', 'color' => 'red'],
         
     ];
 
