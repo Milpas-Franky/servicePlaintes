@@ -124,7 +124,7 @@ Inscription
 </div>
 {% endblock %}#}
 
-{% extends 'base.html.twig' %}
+{#{% extends 'base.html.twig' %}
 
 {% block title %}Inscription{% endblock %}
 
@@ -133,7 +133,7 @@ Inscription
     <div class="col-md-6 col-lg-5 bg-light p-5 rounded shadow">
         <h2 class="mb-4 text-center">Créer un compte</h2>
 
-        {# Messages flash (succès/erreurs globales)#}
+        {# Messages flash (succès/erreurs globales)#
         {% for label, messages in app.flashes %}
             {% for message in messages %}
                 <div class="alert alert-{{ label }}">{{ message }}</div>
@@ -142,35 +142,35 @@ Inscription
 
         {{ form_start(form, {'attr': {'class': 'needs-validation'}, 'method': 'POST'}) }}
 
-            {# Champ email #}
+            {# Champ email #
             <div class="mb-3">
                 {{ form_label(form.email, 'Adresse email', {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
                 {{ form_errors(form.email) }}
             </div>
 
-            {# Champ nom #}
+            {# Champ nom #
             <div class="mb-3">
                 {{ form_label(form.nom, null, {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
                 {{ form_errors(form.nom) }}
             </div>
 
-            {# Champ postnom #}
+            {# Champ postnom #
             <div class="mb-3">
                 {{ form_label(form.postnom, null, {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(form.postnom, {'attr': {'class': 'form-control'}}) }}
                 {{ form_errors(form.postnom) }}
             </div>
 
-            {# Champ prenom #}
+            {# Champ prenom 
             <div class="mb-3">
                 {{ form_label(form.prenom, null, {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
                 {{ form_errors(form.prenom) }}
             </div>
 
-            {# Mot de passe + confirmation #}
+            {# Mot de passe + confirmation 
             <div class="mb-3">
                 {{ form_label(form.plainPassword.first, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
@@ -182,7 +182,7 @@ Inscription
                 {{ form_errors(form.plainPassword.second) }}
             </div>
 
-            {# Téléphone #}
+            {# Téléphone 
             <div class="mb-3">
                 {{ form_label(form.telephone, null, {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
@@ -194,7 +194,7 @@ Inscription
         {{ form_end(form) }}
     </div>
 </div>
-{% endblock %}
+{% endblock %}#}
 
 {#{% extends 'base.html.twig' %}
 
@@ -337,3 +337,40 @@ Inscription
     </div>
 </div>
 {% endblock %}#}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+  <h2 class="mb-4">Créer un compte</h2>
+
+  {{ form_start(form, {'attr': {'id': 'registration-form'}}) }}
+
+    {{ form_row(form.email) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.postnom) }}
+    {{ form_row(form.prenom) }}
+    {{ form_row(form.plainPassword.first) }}
+    {{ form_row(form.plainPassword.second) }}
+
+    {# <button type="submit" class="btn btn-primary">S’inscrire</button> #}
+
+  {{ form_end(form) }}
+</div>
+
+<script>
+  const form = document.getElementById('registration-form');
+  const password1 = form.querySelector('[name="plainPassword[first]"]');
+  const password2 = form.querySelector('[name="plainPassword[second]"]');
+
+  password2.addEventListener('input', () => {
+    if (password1.value !== password2.value) {
+      password2.setCustomValidity("Les mots de passe ne correspondent pas");
+    } else {
+      password2.setCustomValidity("");
+    }
+  });
+</script>
+{% endblock %}

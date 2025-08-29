@@ -104,7 +104,7 @@ final class PlainteController extends AbstractController
             }
 
             // Définition du statut initial
-            $status = $em->getRepository(Status::class)->findOneBy(['nom' => 'En attente']);
+            $status = $em->getRepository(className: Status::class)->findOneBy(['nom' => 'En attente']);
             $plainte->setStatus($status);
 
             $em->persist($plainte);

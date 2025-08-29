@@ -2,8 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Plainte;
+use App\Entity\Status;
+use App\Form\PlainteType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -20,9 +25,43 @@ final class UserDashboardController extends AbstractController
 
     #[Route('/deposer-plainte', name: 'app_deposer_plainte')]
     #[IsGranted('ROLE_USER')]
-    public function deposerPlainte(): Response
+    public function deposerPlainte(Request $request, EntityManagerInterface $em)
     {
-        return $this->render('user/deposer_plainte.html.twig');
+
+        $plainte = new Plainte();
+
+        // Génération automatique
+        $plainte->setCodeSuivi(uniqid('PLN-'));
+        $plainte->setDateCreation(new \DateTime());
+
+        // Création du formulaire
+        $form = $this->createForm(PlainteType::class, $plainte);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $plainte->setDateCreation(new \DateTime());
+
+            // Lier l'utilisateur connecté
+            $plainte->setUser($this->getUser());
+
+            if (!$this->getUser()) {
+                throw $this->createAccessDeniedException('Vous devez être connecté pour déposer une plainte.');
+            }
+
+            // Définition du statut initial
+            $status = $em->getRepository(className: Status::class)->findOneBy(['nom' => 'En attente']);
+            $plainte->setStatus($status);
+
+            $em->persist($plainte);
+            $em->flush();
+
+            $this->addFlash('success', 'Votre plainte a été déposée avec succès.');
+            return $this->redirectToRoute('app_user_dashboard');
+        }
+
+        return $this->render('user/deposer_plainte.html.twig', [
+            'form' => $form->createView(), // ← cette ligne est indispensable
+        ]);
     }
 
     #[Route('/suivre-plainte', name: 'app_suivre_plainte')]

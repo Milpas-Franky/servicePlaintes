@@ -79,16 +79,22 @@ class UserType extends AbstractType
                     new Assert\Length(['min' => 2, 'max' => 180])
                 ]
             ])
-            ->add('plainPassword', PasswordType::class, [
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'mapped' => false,
                 'first_options' => [
-                    'mapped' => false,
-                    'required' => false,
-                    'label' => 'Nouveau Mot de passe'
+                    'label' => 'Mot de passe',
+                    'attr' => ['class' => 'form-control']
                 ],
                 'second_options' => [
-                    'label' => 'Confirmation du mot de passe'
+                    'label' => 'Confirmation du mot de passe',
+                    'attr' => ['class' => 'form-control']
                 ],
-                'invalid_message' => 'Les mots de passe ne correspondent pas.'
+                'invalid_message' => 'Les mots de passe ne correspondent pas.',
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Length(['min' => 6, 'max' => 4096])
+                ]
             ])
             ->add('telephone', TextType::class, [
                 'attr' => [

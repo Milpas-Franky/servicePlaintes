@@ -193,8 +193,8 @@ class SecurityController extends AbstractController
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                $plain = $form->get('plainPassword')->getData();
-                $user->setPassword($passwordHasher->hashPassword($user, $plain));
+                $plainPassword = $form->get('plainPassword')->getData();
+                $user->setPassword($passwordHasher->hashPassword($user, $plainPassword));
                 // Donne un rôle minimal si besoin
                 if (!in_array('ROLE_USER', $user->getRoles(), true)) {
                     $user->setRoles(['ROLE_USER']);
@@ -202,11 +202,12 @@ class SecurityController extends AbstractController
 
                 //if ($form->isSubmitted() && $form->isValid()) {
                 // Récupérer le plainPassword
-                //$plainPassword = $form->get('plainPassword')->getData();
-
-                // Hashage du mot de passe
-                //$hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
-                //$user->setPassword($hashedPassword);
+                $plainPassword = $form->get('plainPassword')->getData();
+                if ($plainPassword) {
+                    // Hashage du mot de passe
+                    $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
+                    $user->setPassword($hashedPassword);
+                }
 
                 // Sauvegarde en base
                 $em->persist($user);

@@ -84,13 +84,14 @@ class RegistrationType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'mapped' => false,
+                'required' => true,
                 'first_options' => [
                     'label' => 'Mot de passe',
-                    'attr' => ['class' => 'form-control']
+                    'attr' => ['class' => 'form-control', 'auto-complete' => 'new-password']
                 ],
                 'second_options' => [
-                    'label' => 'Confirmation du mot de passe',
-                    'attr' => ['class' => 'form-control']
+                    'label' => 'Confirmer le mot de passe',
+                    'attr' => ['class' => 'form-control', 'auto-complete' => 'new-password']
                 ],
                 'invalid_message' => 'Les mots de passe ne correspondent pas.',
                 'constraints' => [

@@ -50,7 +50,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank()]
     private ?string $password = null;
 
-    #[Assert\NotBlank]
+    // #[Assert\NotBlank(message: 'Veuillez entrer un mot de passe')]
     private ?string $plainPassword = null;
 
     #[ORM\Column(length: 16)]
@@ -63,9 +63,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(targetEntity: Role::class, inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Role $role = null;
-
-
-
 
     /**
      * @var Collection<int, Plainte>

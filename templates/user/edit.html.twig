@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mes informations{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+  <h2 class="mb-4">Modifier mes informations personnelles</h2>
+
+  {% for message in app.flashes('success') %}
+    <div class="alert alert-success animate__animated animate__fadeIn">{{ message }}</div>
+  {% endfor %}
+
+  {{ form_start(form) }}
+
+    <div class="mb-3">
+      {{ form_label(form.nom) }}
+      {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.nom) }}
+    </div>
+
+    <div class="mb-3">
+      {{ form_label(form.postnom) }}
+      {{ form_widget(form.postnom, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.postnom) }}
+    </div>
+
+    <div class="mb-3">
+      {{ form_label(form.prenom) }}
+      {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.prenom) }}
+    </div>
+
+    <div class="mb-3">
+      {{ form_label(form.email) }}
+      {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.email) }}
+    </div>
+
+    <div class="mb-3">
+      {{ form_label(form.telephone) }}
+      {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.telephone) }}
+    </div>
+
+    <div class="mb-3">
+      {{ form_label(form.plainPassword) }}
+      {{ form_widget(form.plainPassword, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.plainPassword) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+
+  {{ form_end(form) }}
+</div>
+{% endblock %}
+{# {% endblock %} #}
